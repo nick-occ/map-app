@@ -1,0 +1,7 @@
+.nav-container {
+  display: flex;
+}
+
+.nav-container > li {
+  flex: 1;
+}
