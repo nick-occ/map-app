@@ -112,17 +112,17 @@ export class MapComponent implements OnInit, OnDestroy {
   identifyClick(event) {
     this.idMapParams.geometry = event.mapPoint;
     this.idMapParams.mapExtent = this.view.extent;
-    this.idMapTask.execute(this.idMapParams).then((response) => {
-      console.log(response);
-      this.openDialog(response);
-    });
+    const observers = this.mapService.getIdResults(this.idMapParams, this.idMapTask);
+    const data = this.mapService.getIdData(observers);
+    console.log(data);
+    this.openDialog(data);
   }
 
-  openDialog(response): void {
+
+  openDialog(results): void {
     const dialogRef = this.dialog.open(MapIdentifyComponent, {
-      height: '400px',
-      width: '600px',
-      data: {results: response.results[0]}
+      width: '500px',
+      data: {results}
     });
 
     dialogRef.afterClosed().subscribe(result => {

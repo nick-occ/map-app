@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
-'../map.component';
 import { MapIdentify } from '../shared/map-identify';
-import {MatDialogRef} from "@angular/material/dialog";
+import {Observable} from "rxjs";
 @Component({
   selector: 'app-map-identify',
   templateUrl: './map-identify.component.html',
@@ -10,9 +10,15 @@ import {MatDialogRef} from "@angular/material/dialog";
 })
 export class MapIdentifyComponent implements OnInit {
 
-  results: MapIdentify;
+  constructor(
+    public dialogRef: MatDialogRef<MapIdentifyComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: MapIdentifyComponent) {
+  }
 
-  constructor() { }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 
   ngOnInit() {}
 }
