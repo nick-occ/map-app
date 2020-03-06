@@ -7,18 +7,18 @@ import { MapComponent } from './map/map.component';
 import { MapMenubarComponent } from './map/map-menubar/map-menubar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MapIdentifyComponent } from './map/map-identify/map-identify.component';
-import { MapIdentifyDialogComponent } from './map/map-identify/map-identify-dialog/map-identify-dialog.component';
+
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
-import {FormsModule} from "@angular/forms";
-import {MatInputModule} from "@angular/material/input";
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     MapMenubarComponent,
-    MapIdentifyComponent,
-    MapIdentifyDialogComponent
+    MapIdentifyComponent
   ],
   imports: [
     BrowserModule,
@@ -26,14 +26,11 @@ import {MatInputModule} from "@angular/material/input";
     BrowserAnimationsModule,
     MatDialogModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    DragDropModule
   ],
-  entryComponents: [
-    MapIdentifyDialogComponent
-  ],
-  providers: [
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { appearance: 'fill'}}
-  ],
+  entryComponents: [MapIdentifyComponent],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
