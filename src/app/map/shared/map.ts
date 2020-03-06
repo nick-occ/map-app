@@ -1,7 +1,5 @@
 export class Map {
+  mapId: number;
   name: string;
   url: string;
-  basemap: string;
-  center: number[];
-  zoom: number;
 }
