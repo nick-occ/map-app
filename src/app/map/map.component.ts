@@ -58,7 +58,7 @@ export class MapComponent implements OnInit, OnDestroy {
       };
 
       // load layer in map
-      this.loadLayer();
+      this.loadLayers();
 
       this.view = new MapView(mapViewProp);
 
@@ -72,29 +72,35 @@ export class MapComponent implements OnInit, OnDestroy {
     }
   }
 
+  getProject(id: number): void {
+    this.mapService.getProject(id)
+      .subscribe(project => this.project = project);
+  }
+
   // subscribe to service to get map properties
   getMaps(): void {
-    this.mapService.getMaps()
+    this.mapService.getMaps(this.project.maps)
       .subscribe(map => this.map = map);
   }
 
   // load layer into map
-  async loadLayer() {
+  async loadLayers() {
 
     const [MapImageLayer] = await loadModules(['esri/layers/MapImageLayer']);
-    if (this.map.url) {
-      const layer = new MapImageLayer({
-        url: this.map.url
+    const layers = this.map.map((m) => {
+        return new MapImageLayer({
+          url: m.url
+        });
       });
-
-      this.esriMap.add(layer);
-    }
+    this.esriMap.addMany(layers);
   }
 
   async identify() {
     const [IdentifyTask, IdentifyParameters] = await loadModules(['esri/tasks/IdentifyTask', 'esri/tasks/support/IdentifyParameters']);
 
-    this.idMapTask = new IdentifyTask(this.map.url);
+    // this.idMapTask = new IdentifyTask(this.map[0].url);
+    this.idMapTask = this.map.map(m => new IdentifyTask(m.url));
+    console.log('idMapTask', this.idMapTask);
 
     this.idMapParams = new IdentifyParameters();
     this.idMapParams.tolerance = 3;
