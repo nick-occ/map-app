@@ -4,7 +4,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MapMenubarComponent } from './map-menubar/map-menubar.component';
 import { MapIdentifyComponent } from './map-identify/map-identify.component';
 import { Map } from './shared/map';
+import { MapIdentify } from './shared/map-identify';
 import { MapService } from './shared/map.service';
+import {Project} from './shared/project';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-map',
@@ -17,8 +20,9 @@ export class MapComponent implements OnInit, OnDestroy {
   esriMap: any;
   idMapTask: any;
   idMapParams: any;
-  map: Map;
-  mapIdentify: MapIdentifyComponent;
+  map: Map[];
+  project: Project;
+  mapIdentify: MapIdentify;
 
   // initialize map
   constructor(private mapService: MapService, public dialog: MatDialog) { }
@@ -30,11 +34,13 @@ export class MapComponent implements OnInit, OnDestroy {
       // load modules
       const [EsriMap, MapView] = await loadModules(['esri/Map', 'esri/views/MapView'], options);
 
+      await this.getProject(1);
+
       // get map configuration
       await this.getMaps();
 
       // set map properties
-      const {basemap, center, zoom} = this.map;
+      const {basemap, center, zoom} = this.project;
 
       const mapProp = {
         basemap
