@@ -6,30 +6,30 @@ import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { MapMenubarComponent } from './map/map-menubar/map-menubar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MapIdentifyComponent } from './map/map-identify/map-identify.component';
 
-import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MapIdentifyPanelComponent } from './map/map-identify-panel/map-identify-panel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     MapMenubarComponent,
-    MapIdentifyComponent
+    MapIdentifyPanelComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     BrowserAnimationsModule,
-    MatDialogModule,
     FormsModule,
     MatInputModule,
-    DragDropModule
+    DragDropModule,
+    MatCardModule
   ],
-  entryComponents: [MapIdentifyComponent],
+  entryComponents: [],
   providers: [],
   bootstrap: [AppComponent]
 })

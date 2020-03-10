@@ -1,0 +1,11 @@
+<div [hidden]="this.mapService.getIdPanelHidden()">
+<mat-card cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+
+  <mat-card-title>
+    <button><</button>
+    {{this.mapService.getCurrentMapName()}}
+    <button>></button>
+  </mat-card-title>
+
+</mat-card>
+</div>

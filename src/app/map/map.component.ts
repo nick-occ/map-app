@@ -2,12 +2,11 @@ import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/co
 import { loadModules, loadCss } from 'esri-loader';
 import { MatDialog } from '@angular/material/dialog';
 import { MapMenubarComponent } from './map-menubar/map-menubar.component';
-import { MapIdentifyComponent } from './map-identify/map-identify.component';
+import { MapIdentifyPanelComponent } from './map-identify-panel/map-identify-panel.component';
 import { Map } from './shared/map';
 import { MapIdentify } from './shared/map-identify';
 import { MapService } from './shared/map.service';
 import {Project} from './shared/project';
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-map',
@@ -25,7 +24,7 @@ export class MapComponent implements OnInit, OnDestroy {
   mapIdentify: MapIdentify;
 
   // initialize map
-  constructor(private mapService: MapService, public dialog: MatDialog) { }
+  constructor(private mapService: MapService) { }
 
   async initializeMap() {
     try {
@@ -110,24 +109,18 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   identifyClick(event) {
+
+    this.mapService.idResults = [];
     this.idMapParams.geometry = event.mapPoint;
     this.idMapParams.mapExtent = this.view.extent;
-    const observers = this.mapService.getIdResults(this.idMapParams, this.idMapTask);
-    const data = this.mapService.getIdData(observers);
-    console.log(data);
-    this.openDialog(data);
-  }
-
-
-  openDialog(results): void {
-    const dialogRef = this.dialog.open(MapIdentifyComponent, {
-      width: '500px',
-      data: {results}
+    const observers = this.mapService.getIdTasks(this.idMapParams, this.idMapTask);
+    observers.forEach(obs => {
+      obs.subscribe(data => {
+        this.mapService.idResults.push(data);
+      });
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('dialog closed');
-    });
+    this.mapService.idResults && this.mapService.setIdPanelHidden(false);
   }
 
   ngOnInit() {

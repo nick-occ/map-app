@@ -13,6 +13,9 @@ import {PROJECT} from './mock-project';
   providedIn: 'root'
 })
 export class MapService {
+  idPanelHidden = true;
+  idResults: MapIdentify[];
+  idRecord = 0;
 
   constructor() { }
 
@@ -28,24 +31,10 @@ export class MapService {
     return of(PROJECT.filter((project) => project.projectId === id)[0]);
   }
 
-  // getIdResults(idMapParams: any, idMapTask: any): Observable<MapIdentify[]> {
-  //   const results: MapIdentify[] = [];
-  //   idMapTask.map( task => {
-  //     task.execute(idMapParams).then((response: any) => {
-  //       results.push(response.results.map( res => {
-  //         const mapIdentify = new MapIdentify(
-  //           this.getMapByUrl(task.url),
-  //           res
-  //         );
-  //         return of(mapIdentify);
-  //       }));
-  //     });
-  //   });
-  //   return of(results);
-  // }
 
 
-  getIdResults(idMapParams: any, idMapTask: any): Observable<any> {
+
+  getIdTasks(idMapParams: any, idMapTask: any): Observable<any> {
     return idMapTask.map( task => {
       return of({
         mapName: this.getMapByUrl(task.url),
@@ -54,22 +43,37 @@ export class MapService {
     });
   }
 
-  getIdData(observers: Observable<any>): MapIdentify[] {
-    const results: MapIdentify[] = [];
-    observers.forEach(obs => {
-      obs.subscribe({
-        next(res) {
-          res.results.subscribe(data => {
-              data.then(rec => {
-                rec.results.forEach(d => {
-                  const mapIdentify = new MapIdentify(res.mapName, d);
-                  results.push(mapIdentify);
-                });
-              });
-          });
-        }
-      });
-    });
-    return results;
+  // getIdData(observers: Observable<any>): MapIdentify[] {
+  //   observers.forEach(obs => {
+  //     obs.subscribe({
+  //       next(res) {
+  //         res.results.subscribe(data => {
+  //             data.then(rec => {
+  //               rec.results.forEach(d => {
+  //                 this.mapIdResults.push(new MapIdentify(res.mapName, d));
+  //                 console.log('1', this.mapIdResults.length);
+  //               });
+  //             });
+  //         });
+  //       }
+  //     });
+  //   });
+  //   console.log('2', this.mapIdResults.length);
+  //   return this.mapIdResults;
+  // }
+
+  getIdPanelHidden(): boolean {
+    return this.idPanelHidden;
   }
+
+  setIdPanelHidden(state): boolean {
+    return this.idPanelHidden = state;
+  }
+
+  getCurrentMapName(): string {
+    if (this.idResults) {
+      return this.idResults[this.idRecord].mapName;
+    }
+  }
+
 }
