@@ -1,5 +1,13 @@
 <div class="map-container mat-app-background basic-container">
   <div #mapViewNode></div>
-  <app-map-identify-panel></app-map-identify-panel>
+  <app-map-identify-panel
+    [idResults]="idResults"
+    [totalResults]="idResults.length"
+    [currentResult]="currentResult"
+    [currentMapName]="currentMapName"
+    [ngStyle]="{visibility: idVisible}"
+  >
+
+  </app-map-identify-panel>
 </div>
 

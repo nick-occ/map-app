@@ -1,11 +1,13 @@
-<div [hidden]="this.mapService.getIdPanelHidden()">
+<div>
 <mat-card cdkDrag cdkDragRootElement=".cdk-overlay-pane">
 
   <mat-card-title>
-    <button><</button>
-    {{this.mapService.getCurrentMapName()}}
-    <button>></button>
+    <button (click)="recClick('prev')" id="prevIdRecord" [ngStyle]="{visibility:idPrevVisRec}"><</button>
+    <h3>{{currentMapName}}</h3>
+    <button (click)="recClick('next')" id="nextIdRecord" [ngStyle]="{visibility:idNextVisRec}">></button>
   </mat-card-title>
+
+  <app-map-identify-results [currentResult]="currentResult"></app-map-identify-results>
 
 </mat-card>
 </div>

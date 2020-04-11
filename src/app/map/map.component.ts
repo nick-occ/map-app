@@ -1,10 +1,15 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  ElementRef,
+  OnChanges,
+  SimpleChanges, Input
+} from '@angular/core';
 import { loadModules, loadCss } from 'esri-loader';
-import { MatDialog } from '@angular/material/dialog';
-import { MapMenubarComponent } from './map-menubar/map-menubar.component';
-import { MapIdentifyPanelComponent } from './map-identify-panel/map-identify-panel.component';
+
 import { Map } from './shared/map';
-import { MapIdentify } from './shared/map-identify';
 import { MapService } from './shared/map.service';
 import {Project} from './shared/project';
 
@@ -13,7 +18,7 @@ import {Project} from './shared/project';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit, OnDestroy {
+export class MapComponent implements OnInit, OnDestroy, OnChanges {
   @ViewChild('mapViewNode', { static: true }) private mapViewEl: ElementRef;
   view: any;
   esriMap: any;
@@ -21,7 +26,12 @@ export class MapComponent implements OnInit, OnDestroy {
   idMapParams: any;
   map: Map[];
   project: Project;
-  mapIdentify: MapIdentify;
+
+  idVisible = 'hidden';
+  idResults = [];
+  currentMapName: string;
+  currentResult: any;
+  totalResults = 0;
 
   // initialize map
   constructor(private mapService: MapService) { }
@@ -97,35 +107,49 @@ export class MapComponent implements OnInit, OnDestroy {
   async identify() {
     const [IdentifyTask, IdentifyParameters] = await loadModules(['esri/tasks/IdentifyTask', 'esri/tasks/support/IdentifyParameters']);
 
-    // this.idMapTask = new IdentifyTask(this.map[0].url);
     this.idMapTask = this.map.map(m => new IdentifyTask(m.url));
-    console.log('idMapTask', this.idMapTask);
 
     this.idMapParams = new IdentifyParameters();
     this.idMapParams.tolerance = 3;
-    this.idMapParams.layerOption = 'top';
+    this.idMapParams.layerOption = 'all';
     this.idMapParams.width = this.view.width;
     this.idMapParams.height = this.view.height;
   }
 
   identifyClick(event) {
+    this.mapService.idRecord = 0;
+    this.idResults = [];
 
-    this.mapService.idResults = [];
     this.idMapParams.geometry = event.mapPoint;
     this.idMapParams.mapExtent = this.view.extent;
-    const observers = this.mapService.getIdTasks(this.idMapParams, this.idMapTask);
-    observers.forEach(obs => {
-      obs.subscribe(data => {
-        this.mapService.idResults.push(data);
-      });
-    });
+    const observer = {
+      next: results => {
+        results.forEach(result => {
+          console.log(result);
+          this.idResults.push(result);
+        });
+        if (this.idResults.length > 0 ) {
+          this.idVisible = 'visible';
+          this.currentMapName = this.idResults[this.mapService.idRecord].mapName;
+          this.currentResult = this.idResults[this.mapService.idRecord].result;
+        } else {
+          this.idVisible = 'hidden';
+        }
+      }
+    };
 
-    this.mapService.idResults && this.mapService.setIdPanelHidden(false);
+    this.mapService.getIdResults(this.idMapParams, this.idMapTask).forEach(data => {
+      data.subscribe(observer);
+    }).then(r => r);
   }
 
   ngOnInit() {
     this.initializeMap().then(r => r);
   }
+
+ ngOnChanges(changes: SimpleChanges): void {
+    console.log('mapChanges', changes);
+ }
 
   ngOnDestroy(): void {
     if (this.view) {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input, AfterViewChecked, AfterContentChecked, OnChanges, SimpleChanges} from '@angular/core';
 import { MapService } from '../shared/map.service';
 
 @Component({
@@ -6,9 +6,21 @@ import { MapService } from '../shared/map.service';
   templateUrl: './map-identify-results.component.html',
   styleUrls: ['./map-identify-results.component.css']
 })
-export class MapIdentifyResultsComponent implements OnInit {
+export class MapIdentifyResultsComponent implements OnInit, OnChanges {
+
+  @Input() currentMapName = '';
+  @Input() currentResult = {
+      layerName: ''
+  };
+  layerName: string;
+  // attributes = {};
 
   constructor(private mapService: MapService) { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('changes', changes);
+    this.layerName = this.currentResult.layerName;
+  }
 
   ngOnInit() {
 

@@ -8,17 +8,24 @@ import { MapMenubarComponent } from './map/map-menubar/map-menubar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import {MatTableModule} from '@angular/material/table';
+
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MapIdentifyPanelComponent } from './map/map-identify-panel/map-identify-panel.component';
+import { MapIdentifyResultsComponent } from './map/map-identify-results/map-identify-results.component';
+import { MapIdentifyResultsTableComponent } from './map/map-identify-results/map-identify-results-table/map-identify-results-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     MapMenubarComponent,
-    MapIdentifyPanelComponent
+    MapIdentifyPanelComponent,
+    MapIdentifyResultsComponent,
+    MapIdentifyResultsTableComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +34,8 @@ import { MapIdentifyPanelComponent } from './map/map-identify-panel/map-identify
     FormsModule,
     MatInputModule,
     DragDropModule,
-    MatCardModule
+    MatCardModule,
+    MatExpansionModule
   ],
   entryComponents: [],
   providers: [],
