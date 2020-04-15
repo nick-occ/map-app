@@ -1,0 +1,8 @@
+table {
+  width: 100%;
+}
+
+.idResult {
+  max-height: 300px;
+  overflow: auto;
+}

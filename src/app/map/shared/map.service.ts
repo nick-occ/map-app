@@ -87,4 +87,13 @@ export class MapService {
   getMapName(idMapTask: any): Observable<string> {
     return of(this.getMapByUrl(idMapTask[this.idRecord].url));
   }
+
+  formatIdAttributes(attributes): any {
+
+    return Object.entries(attributes).map(attribute => {
+      return {field: attribute[0], value: attribute[1]};
+    });
+
+  }
 }
+

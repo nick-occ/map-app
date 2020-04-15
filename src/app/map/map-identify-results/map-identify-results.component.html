@@ -1,8 +1,23 @@
-<mat-expansion-panel>
+<mat-expansion-panel id="idExpansionPanel">
   <mat-expansion-panel-header>
     <mat-panel-title>
       {{layerName}}
     </mat-panel-title>
   </mat-expansion-panel-header>
-<!--  <table mat-table [dataSource]="attributes"></table>-->
+
+    <mat-table class="idResult" [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="field">
+        <mat-header-cell  *matHeaderCellDef mat-sort-header> Field </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.field}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="value">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Value </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.value}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayColumns;"></mat-row>
+    </mat-table>
+
 </mat-expansion-panel>

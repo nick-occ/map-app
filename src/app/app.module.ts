@@ -17,6 +17,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MapIdentifyPanelComponent } from './map/map-identify-panel/map-identify-panel.component';
 import { MapIdentifyResultsComponent } from './map/map-identify-results/map-identify-results.component';
 import { MapIdentifyResultsTableComponent } from './map/map-identify-results/map-identify-results-table/map-identify-results-table.component';
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,9 @@ import { MapIdentifyResultsTableComponent } from './map/map-identify-results/map
     MatInputModule,
     DragDropModule,
     MatCardModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTableModule,
+    MatSortModule
   ],
   entryComponents: [],
   providers: [],
