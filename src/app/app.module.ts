@@ -16,8 +16,9 @@ import {MatInputModule} from '@angular/material/input';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MapIdentifyPanelComponent } from './map/map-identify-panel/map-identify-panel.component';
 import { MapIdentifyResultsComponent } from './map/map-identify-results/map-identify-results.component';
+// tslint:disable-next-line:max-line-length
 import { MapIdentifyResultsTableComponent } from './map/map-identify-results/map-identify-results-table/map-identify-results-table.component';
-import {MatSortModule} from "@angular/material/sort";
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
