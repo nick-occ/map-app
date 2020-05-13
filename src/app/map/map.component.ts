@@ -120,6 +120,7 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges {
     this.idMapParams.layerOption = 'all';
     this.idMapParams.width = this.view.width;
     this.idMapParams.height = this.view.height;
+    this.idMapParams.returnGeometry = true;
   }
 
   identifyClick(event) {
