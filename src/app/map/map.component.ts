@@ -39,7 +39,7 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges {
   async initializeMap() {
     try {
       const options = { css: true };
-      loadCss('https://js.arcgis.com/4.14/esri/css/main.css');
+      loadCss('https://js.arcgis.com/4.15/esri/css/main.css');
       // load modules
       const [EsriMap, MapView] = await loadModules(['esri/Map', 'esri/views/MapView'], options);
 
