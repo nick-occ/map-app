@@ -95,11 +95,17 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges {
   // load layer into map
   async loadLayers() {
 
-    const [MapImageLayer] = await loadModules(['esri/layers/MapImageLayer']);
+    const [MapImageLayer, TileLayer] = await loadModules(['esri/layers/MapImageLayer', 'esri/layers/TileLayer']);
     const layers = this.map.map((m) => {
+      if (m.mapType === 'tileLayer') {
+        return new TileLayer({
+        url: m.url
+        });
+      } else {
         return new MapImageLayer({
           url: m.url
         });
+      }
       });
     this.esriMap.addMany(layers);
   }
