@@ -1,4 +1,14 @@
-import {AfterContentChecked, AfterViewInit, Component, OnChanges, OnInit, SimpleChanges, Input} from '@angular/core';
+import {
+  AfterContentChecked,
+  AfterViewInit,
+  Component,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  Input,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { MapService } from '../shared/map.service';
 import { MapIdentifyResultsComponent } from '../map-identify-results/map-identify-results.component';
 
@@ -15,6 +25,7 @@ export class MapIdentifyPanelComponent implements OnInit, OnChanges {
   @Input() currentMapName = '';
   @Input() currentResult: any;
   @Input() totalResults = 0;
+  @Output() closed = new EventEmitter<boolean>();
 
   constructor(private mapService: MapService) {}
 
@@ -46,5 +57,10 @@ export class MapIdentifyPanelComponent implements OnInit, OnChanges {
     this.idPrevVisRec = this.mapService.idRecord > 0 ? 'visible' : 'hidden';
     this.idNextVisRec = this.mapService.idRecord < (this.totalResults - 1) ? 'visible' : 'hidden';
   }
+
+  hideIdPanel() {
+    this.closed.emit(false);
+  }
+
 
 }

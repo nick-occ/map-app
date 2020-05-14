@@ -1,4 +1,5 @@
 <mat-card cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+  <button (click)="hideIdPanel()">Close</button>
   <mat-card-title>
     <button (click)="recClick('prev')" id="prevIdRecord" [ngStyle]="{visibility:idPrevVisRec}"><</button>
     <h3>{{currentMapName}}</h3>

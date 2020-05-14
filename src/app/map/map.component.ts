@@ -26,8 +26,7 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges {
   idMapParams: any;
   map: Map[];
   project: Project;
-
-  idVisible = 'hidden';
+  idShow = false;
   idResults = [];
   currentMapName: string;
   currentResult: any;
@@ -136,11 +135,13 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges {
           this.idResults.push(result);
         });
         if (this.idResults.length > 0 ) {
-          this.idVisible = 'visible';
+          // this.idVisible = 'visible';
+          this.idShow = true;
           this.currentMapName = this.idResults[this.mapService.idRecord].mapName;
           this.currentResult = this.idResults[this.mapService.idRecord].result;
         } else {
-          this.idVisible = 'hidden';
+          // this.idVisible = 'hidden';
+          this.onClosed(false);
         }
       }
     };
@@ -162,6 +163,12 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges {
     if (this.view) {
       this.view.container = null;
     }
+  }
+
+  onClosed(show) {
+    this.idShow = show;
+    this.mapService.mapView.graphics.removeAll();
+    // this.idResults = [];
   }
 
 }

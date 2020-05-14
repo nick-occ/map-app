@@ -10,7 +10,6 @@ import {
 import { MapService } from '../shared/map.service';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import {MatExpansionPanel} from '@angular/material/expansion';
 import {loadModules} from 'esri-loader';
 
 export interface IdData {
@@ -106,7 +105,6 @@ export class MapIdentifyResultsComponent implements OnInit, OnChanges {
     });
 
     this.mapService.mapView.graphics.add(this.graphic);
-
 
   }
 
