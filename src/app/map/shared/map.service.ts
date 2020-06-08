@@ -3,7 +3,6 @@ import {from, Observable, of, Subject} from 'rxjs';
 
 import {Map} from './map';
 import {Project} from './project';
-import {MapIdentify} from './map-identify';
 
 import {MAPS} from './mock-map';
 import {PROJECT} from './mock-project';
@@ -37,7 +36,6 @@ export class MapService {
     return of(PROJECT.filter((project) => project.projectId === id)[0]);
   }
 
-
   getIdResults(idMapParams: any, idMapTask: any): Observable<any> {
     return from(idMapTask.map(task => {
       return this.getIdResult(task.execute(idMapParams), this.getMapByUrl(task.url));
@@ -54,46 +52,9 @@ export class MapService {
     });
   }
 
-  getCurrentMapName(): string {
-    if (this.idResults.length > 0) {
-      return this.idResults[this.idRecord].mapName;
-    }
-  }
-
-  getIdRecord(): number {
-    return this.idRecord;
-  }
-
-  getIdPanelHidden(): boolean {
-    return this.idPanelHidden;
-  }
-
-  setIdPanelHidden(state): boolean {
-    return this.idPanelHidden = state;
-  }
-
-  getCurrentRecord(): Observable<any> {
-    return of(this.idResults[this.idRecord]);
-  }
-
-  getData(idMapParams: any, idMapTask: any): Observable<any> {
-    return idMapTask.map(task => {
-      return {
-        mapName: this.getMapByUrl(task.url),
-        results: from(task.execute(idMapParams))};
-    });
-  }
-
-  getMapName(idMapTask: any): Observable<string> {
-    return of(this.getMapByUrl(idMapTask[this.idRecord].url));
-  }
-
   formatIdAttributes(attributes): any {
-
     return Object.entries(attributes).map(attribute => {
       return {field: attribute[0], value: attribute[1]};
     });
-
   }
 }
-
