@@ -1,12 +1,21 @@
-<div class="map-container mat-app-background basic-container">
-  <div #mapViewNode></div>
-  <app-map-identify-panel
-    *ngIf="idShow"
-    [idResults]="idResults"
-    [totalResults]="idResults.length"
-    [currentResult]="currentResult"
-    [currentMapName]="currentMapName"
-    (closed)="onClosed($event)">
-  </app-map-identify-panel>
-</div>
+<mat-drawer-container class='app-container'>
 
+  <mat-drawer #drawer mode="side" [opened]=this.mapService.legendOpen>
+        <app-map-legend></app-map-legend>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <app-map-menubar [projectName]="projectName"></app-map-menubar>
+    <div class="map-container mat-app-background basic-container">
+        <div #mapViewNode></div>
+        <app-map-identify-panel
+          *ngIf="idShow"
+          [idResults]="idResults"
+          [totalResults]="idResults.length"
+          [currentResult]="currentResult"
+          [currentMapName]="currentMapName"
+          (closed)="onClosed($event)">
+        </app-map-identify-panel>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
