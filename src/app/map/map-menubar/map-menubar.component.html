@@ -1,10 +1,7 @@
-<nav>
-  <ul class="nav-container">
-    <li>Home</li>
-    <li>Profile</li>
-    <li class="search">
-      <input type="text" class="search-input" placeholder="Search">
-    </li>
-    <li>Logout</li>
-  </ul>
-</nav>
+<mat-toolbar>{{projectName}}
+  <app-map-menubar-item *ngFor="let mapTool of mapTools" [tool]="mapTool"></app-map-menubar-item>
+<!--  <mat-menu #afterMenu="matMenu" xPosition="after">-->
+<!--    <button mat-menu-item>Item 1</button>-->
+<!--    <button mat-menu-item>Item 2</button>-->
+<!--  </mat-menu>-->
+</mat-toolbar>
