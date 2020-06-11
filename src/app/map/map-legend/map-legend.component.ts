@@ -1,4 +1,4 @@
-import {Component, OnInit, AfterContentInit, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, OnInit, AfterViewInit, OnChanges, SimpleChanges, Input} from '@angular/core';
 import {loadModules} from 'esri-loader';
 import {MapService} from '../shared/map.service';
 
@@ -7,13 +7,11 @@ import {MapService} from '../shared/map.service';
   templateUrl: './map-legend.component.html',
   styleUrls: ['./map-legend.component.css']
 })
-export class MapLegendComponent implements OnInit, AfterContentInit {
+export class MapLegendComponent implements OnInit, AfterViewInit {
 
   constructor(private mapService: MapService) { }
 
-  ngAfterContentInit(): void {
-    this.mapService.legendOpen = true;
-  }
+  ngAfterViewInit(): void {}
 
   ngOnInit(): void {
 

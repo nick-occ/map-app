@@ -40,7 +40,7 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges {
       const options = { css: true };
       loadCss('https://js.arcgis.com/4.15/esri/css/main.css');
       // load modules
-      const [EsriMap, MapView] = await loadModules(['esri/Map', 'esri/views/MapView'], options);
+      const [EsriMap, MapView, Legend] = await loadModules(['esri/Map', 'esri/views/MapView', 'esri/widgets/Legend'], options);
 
       await this.getProject(1);
 
@@ -69,11 +69,16 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges {
       this.loadLayers();
 
       this.view = new MapView(mapViewProp);
+      this.mapService.mapView = this.view;
+
+
+      const legend = new Legend({
+        view:  this.mapService.mapView
+      }, 'legendContainer');
 
       this.identify();
 
       this.view.on('click', (event) => this.identifyClick(event));
-
       return this.view;
     } catch (error) {
       console.log('EsriLoader: ', error);
