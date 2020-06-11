@@ -1,26 +1,23 @@
 import {Injectable} from '@angular/core';
-import {from, Observable, of, Subject} from 'rxjs';
+import {from, Observable, of, Subject, Subscription} from 'rxjs';
 
 import {Map} from './map';
 import {Project} from './project';
 
 import {MAPS} from './mock-map';
+import {MAP_TOGGLE} from './mock-map-tool';
 import {PROJECT} from './mock-project';
 import {map} from 'rxjs/operators';
+import {MapToggle} from './map-tool';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MapService {
-  idPanelHidden = true;
-  idResults: MapIdentify[] = [];
-  idData: [];
   idRecord = 0;
-  idTaskRec = 0;
-  mapName = 'Testing';
-  testData = '1';
-  testSubject = new Subject();
-  currentMapName = '';
+  idShow = false;
+  mapView: {graphics: {add, removeAll}, goTo, ui};
+  toggleButtons = MAP_TOGGLE;
 
   constructor() { }
 

@@ -8,3 +8,9 @@ export interface MapTool {
   inputType: MapToolInputType;
   checked: boolean;
 }
+
+export interface MapToggle {
+  Identify: boolean;
+  Edit: boolean;
+  Legend: boolean;
+}

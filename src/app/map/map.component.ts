@@ -5,13 +5,15 @@ import {
   ViewChild,
   ElementRef,
   OnChanges,
-  SimpleChanges, Input
+  SimpleChanges, Input, AfterViewChecked
 } from '@angular/core';
 import { loadModules, loadCss } from 'esri-loader';
 
 import { Map } from './shared/map';
 import { MapService } from './shared/map.service';
 import {Project} from './shared/project';
+import {Observable} from 'rxjs';
+import {MatButtonToggle} from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-map',

@@ -1,6 +1,6 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {MatButtonToggle} from "@angular/material/button-toggle";
-import {MAP_TOOL} from "../shared/mock-map-tool";
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {MatButtonToggle} from '@angular/material/button-toggle';
+import {MAP_TOOL} from '../shared/mock-map-tool';
 
 @Component({
   selector: 'app-map-menubar',
