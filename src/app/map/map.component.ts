@@ -28,11 +28,10 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges {
   idMapParams: any;
   map: Map[];
   project: Project;
-  idShow = false;
+  projectName = '';
   idResults = [];
   currentMapName: string;
   currentResult: any;
-  totalResults = 0;
 
   // initialize map
   constructor(private mapService: MapService) { }
@@ -89,7 +88,10 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges {
 
   getProject(id: number): void {
     this.mapService.getProject(id)
-      .subscribe(project => this.project = project);
+      .subscribe(project => {
+        this.project = project;
+        this.projectName = this.project.name;
+      });
   }
 
   // subscribe to service to get map properties
