@@ -9,7 +9,7 @@
     <div class="map-container mat-app-background basic-container">
         <div #mapViewNode></div>
         <app-map-identify-panel
-          *ngIf="idShow"
+          *ngIf="getIdShow()"
           [idResults]="idResults"
           [totalResults]="idResults.length"
           [currentResult]="currentResult"

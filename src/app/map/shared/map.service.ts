@@ -54,4 +54,9 @@ export class MapService {
       return {field: attribute[0], value: attribute[1]};
     });
   }
+
+  showIdentify(show= false): void {
+    this.idShow = show;
+    this.mapView.graphics.removeAll();
+  }
 }

@@ -130,6 +130,11 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   identifyClick(event) {
+    if (!this.mapService.toggleButtons.Identify) {
+      this.onClosed(false);
+      return 'Event not enabled';
+    }
+
     this.mapService.idRecord = 0;
     this.idResults = [];
 
@@ -143,7 +148,7 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges {
         });
         if (this.idResults.length > 0 ) {
           // this.idVisible = 'visible';
-          this.idShow = true;
+          this.mapService.idShow = true;
           this.currentMapName = this.idResults[this.mapService.idRecord].mapName;
           this.currentResult = this.idResults[this.mapService.idRecord].result;
         } else {
@@ -173,9 +178,14 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   onClosed(show) {
-    this.idShow = show;
-    this.mapService.mapView.graphics.removeAll();
-    // this.idResults = [];
+    this.mapService.showIdentify(show);
   }
 
+ getIdShow() {
+    return this.mapService.idShow;
+ }
+
+ getToggleState() {
+    return this.mapService.toggleButtons;
+ }
 }
