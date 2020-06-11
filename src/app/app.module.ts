@@ -17,6 +17,13 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MapIdentifyPanelComponent } from './map/map-identify-panel/map-identify-panel.component';
 import { MapIdentifyResultsComponent } from './map/map-identify-results/map-identify-results.component';
 import {MatSortModule} from '@angular/material/sort';
+import { MapLegendComponent } from './map/map-legend/map-legend.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatButtonModule} from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { MapMenubarItemComponent } from './map/map-menubar-item/map-menubar-item.component';
 
 @NgModule({
   declarations: [
@@ -25,19 +32,26 @@ import {MatSortModule} from '@angular/material/sort';
     MapMenubarComponent,
     MapIdentifyPanelComponent,
     MapIdentifyResultsComponent,
+    MapLegendComponent,
+    MapMenubarItemComponent,
   ],
-  imports: [
-    BrowserModule,
-    NgbModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    MatInputModule,
-    DragDropModule,
-    MatCardModule,
-    MatExpansionModule,
-    MatTableModule,
-    MatSortModule
-  ],
+    imports: [
+        BrowserModule,
+        NgbModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        MatInputModule,
+        DragDropModule,
+        MatCardModule,
+        MatExpansionModule,
+        MatTableModule,
+        MatSortModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatMenuModule,
+        MatToolbarModule,
+        MatButtonToggleModule
+    ],
   entryComponents: [],
   providers: [],
   bootstrap: [AppComponent]
