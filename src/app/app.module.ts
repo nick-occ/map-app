@@ -22,8 +22,11 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MapMenubarItemComponent } from './map/map-menubar-item/map-menubar-item.component';
+import { MapLegendItemComponent } from './map/map-legend-item/map-legend-item.component';
+
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,23 +37,25 @@ import { MapMenubarItemComponent } from './map/map-menubar-item/map-menubar-item
     MapIdentifyResultsComponent,
     MapLegendComponent,
     MapMenubarItemComponent,
+    MapLegendItemComponent,
   ],
     imports: [
-        BrowserModule,
-        NgbModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        MatInputModule,
-        DragDropModule,
-        MatCardModule,
-        MatExpansionModule,
-        MatTableModule,
-        MatSortModule,
-        MatSidenavModule,
-        MatButtonModule,
-        MatMenuModule,
-        MatToolbarModule,
-        MatButtonToggleModule
+      BrowserModule,
+      NgbModule,
+      BrowserAnimationsModule,
+      FormsModule,
+      MatInputModule,
+      DragDropModule,
+      MatCardModule,
+      MatExpansionModule,
+      MatTableModule,
+      MatSortModule,
+      MatSidenavModule,
+      MatButtonModule,
+      MatMenuModule,
+      MatToolbarModule,
+      MatButtonToggleModule,
+      HttpClientModule
     ],
   entryComponents: [],
   providers: [],

@@ -9,6 +9,10 @@ import {MAP_TOGGLE} from './mock-map-tool';
 import {PROJECT} from './mock-project';
 import {map} from 'rxjs/operators';
 import {MapToggle} from './map-tool';
+import {HttpClient} from '@angular/common/http';
+import {MapViewInfo} from './map-view-info';
+import {MapView} from './map-view';
+import {MapLayer} from './map-layer';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +20,12 @@ import {MapToggle} from './map-tool';
 export class MapService {
   idRecord = 0;
   idShow = false;
-  mapView: {graphics: {add, removeAll}, goTo, ui};
+  // mapView: {graphics: {add, removeAll}, goTo, ui, layerViews: {items}, width, height, on};
+  mapView: any;
   toggleButtons = MAP_TOGGLE;
+  mapViewInfo: MapViewInfo[] = [];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getMaps(ids: number[]): Observable<Map[]> {
     return of(MAPS.filter( map => ids.includes(map.mapId)));
@@ -59,4 +65,44 @@ export class MapService {
     this.idShow = show;
     this.mapView.graphics.removeAll();
   }
+
+  getLegend(url): Observable<any[]> {
+    return this.http.get<any[]>(url);
+  }
+
+  setMapViewInfo(layer): any {
+    const layerItem: MapViewInfo = {
+      mapName: layer.title,
+      mapUrl: layer.url,
+      visible: layer.visible,
+      layers: this.getLayers(layer.sublayers.items)
+    };
+    this.mapViewInfo.push(layerItem);
+  }
+
+  getLayers(layers: []): MapLayer[] {
+    return layers.map((layer: any) => {
+      const layerObj: MapLayer = {
+        layerName: layer.title,
+        layerId: layer.id,
+        visible: layer.visible,
+      };
+
+      if (layer.sublayers !== null) {
+        layerObj.sublayers = layer.sublayers.items.map(item => {
+          return {
+            layerName: item.title,
+            layerId: item.id,
+            visible: item.visible
+          };
+        });
+      }
+      return layerObj;
+    });
+  }
+
+  getMapViewInfo(): Observable<any> {
+    return of(this.mapViewInfo);
+  }
+
 }
