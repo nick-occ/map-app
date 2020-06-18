@@ -1,0 +1,18 @@
+<div>
+  <label>
+    <input *ngIf="mapType == 'dynamic'" #mapLayerLegend
+           type="checkbox"
+           [checked]="layer.visible"
+           [value]="layer.layerId"
+           (change)="mapLegendChanged()"
+    />
+    {{layer.layerName}}
+  </label>
+  <div *ngIf="layer.sublayers" style="margin-left: 20px;">
+  <app-map-legend-item-layers
+    *ngFor="let lyr of layer.sublayers"
+    [mapUrl]="this.mapUrl"
+    [layer]="lyr">
+  </app-map-legend-item-layers>
+  </div>
+</div>

@@ -1,14 +1,7 @@
 <div style="width: 250px;">
-    Legend
-    <h5 *ngFor="let info of mapViewInfo">
-      {{info.mapName}}
-      <ul *ngFor="let layer of info.layers">
-        <li>{{layer.layerName}}</li>
-        <ul *ngFor="let sl of layer.sublayers">
-          <li>{{sl.layerName}}</li>
-        </ul>
-      </ul>
-    </h5>
-<!--    <div id="legendContainer" #legend></div>-->
+    <h4><b>Legend</b></h4>
+  <mat-accordion multi="true">
+    <app-map-legend-item *ngFor="let info of mapViewInfo" [item]="info"></app-map-legend-item>
+  </mat-accordion>
 </div>
 

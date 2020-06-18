@@ -1,0 +1,15 @@
+<mat-expansion-panel  [expanded]="true">
+  <mat-expansion-panel-header>
+        <b><label>
+          <input #mapLegend type="checkbox" [checked]="item.visible" (change)="mapLegendChanged(item)"/>
+          {{item.mapName}}
+        </label></b>
+  </mat-expansion-panel-header>
+
+  <app-map-legend-item-layers
+    *ngFor="let layer of item.layers | orderBy: 'layer.layerId': true"
+    [mapUrl]="item.mapUrl"
+    [mapType] = "item.mapType"
+    [layer]="layer">
+  </app-map-legend-item-layers>
+</mat-expansion-panel>

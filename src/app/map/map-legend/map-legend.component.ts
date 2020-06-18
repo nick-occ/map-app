@@ -31,6 +31,9 @@ import {MapViewInfo} from "../shared/map-view-info";
 export class MapLegendComponent implements OnInit, AfterViewInit {
 
   mapViewInfo: MapViewInfo[] = [];
+  @ViewChild('mapLegend') mapLegend: any;
+  @ViewChild('mapLayerLegend') mapLayerLegend: any;
+  @ViewChild('mapSublayerLegend') mapSublayerLegend: any;
 
   constructor(private mapService: MapService) { }
 
@@ -41,6 +44,22 @@ export class MapLegendComponent implements OnInit, AfterViewInit {
     }, error => {
       console.log(error);
     });
+  }
+
+
+  mapLegendChanged(evt): void {
+    console.log(evt.target.checked);
+    console.log(this.mapService.mapView);
+    console.log(evt);
+    this.mapService.mapView.layerViews.items[0].visible = evt.target.checked;
+  }
+
+  mapLayerLegendChanged(evt): void {
+    console.log(evt.target.checked);
+  }
+
+  mapSublayerLegendChanged(evt): void {
+    console.log(evt.target.checked);
   }
 
   ngOnInit(): void {

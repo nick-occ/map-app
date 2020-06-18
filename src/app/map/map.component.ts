@@ -123,7 +123,7 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
 
       this.esriMap.add(layer);
       this.mapService.mapView.whenLayerView(layer).then(() => {
-        this.mapService.setMapViewInfo(layer);
+        this.mapService.setMapViewInfo(layer, m);
       });
     });
   }

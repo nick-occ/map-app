@@ -27,6 +27,9 @@ import { MapMenubarItemComponent } from './map/map-menubar-item/map-menubar-item
 import { MapLegendItemComponent } from './map/map-legend-item/map-legend-item.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { MapLegendItemLayersComponent } from './map/map-legend-item-layers/map-legend-item-layers.component';
+
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
     MapLegendComponent,
     MapMenubarItemComponent,
     MapLegendItemComponent,
+    MapLegendItemLayersComponent,
   ],
     imports: [
       BrowserModule,
@@ -55,7 +59,8 @@ import { HttpClientModule } from '@angular/common/http';
       MatMenuModule,
       MatToolbarModule,
       MatButtonToggleModule,
-      HttpClientModule
+      HttpClientModule,
+      OrderModule
     ],
   entryComponents: [],
   providers: [],

@@ -70,10 +70,11 @@ export class MapService {
     return this.http.get<any[]>(url);
   }
 
-  setMapViewInfo(layer): any {
+  setMapViewInfo(layer, map): any {
     const layerItem: MapViewInfo = {
       mapName: layer.title,
       mapUrl: layer.url,
+      mapType: map.mapType,
       visible: layer.visible,
       layers: this.getLayers(layer.sublayers.items)
     };
