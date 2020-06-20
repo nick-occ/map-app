@@ -1,5 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MapService} from "../shared/map.service";
+import {MapViewInfo} from "../shared/map-view-info";
 
 @Component({
   selector: 'app-map-legend-item',
@@ -7,18 +8,12 @@ import {MapService} from "../shared/map.service";
   styleUrls: ['./map-legend-item.component.css']
 })
 export class MapLegendItemComponent implements OnInit {
-  @Input() item: {
-    visible: boolean;
-    mapName: string;
-    mapUrl: string;
-    mapType: string;
-    layers: [];
-  };
+  @Input() item: MapViewInfo;
   @ViewChild('mapLegend') mapLegend: any;
+
   constructor(private mapService: MapService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   mapLegendChanged(legend): void {
     this.mapService.mapView.layerViews.items.filter(item => item.layer.url === legend.mapUrl)

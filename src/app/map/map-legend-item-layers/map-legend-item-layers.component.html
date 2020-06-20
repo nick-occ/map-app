@@ -8,6 +8,12 @@
     />
     {{layer.layerName}}
   </label>
+
+  <div *ngFor="let image of legend">
+    <img src="{{imageProperty}},{{image.imageData}}" alt="Image">
+  </div>
+
+
   <div *ngIf="layer.sublayers" style="margin-left: 20px;">
   <app-map-legend-item-layers
     *ngFor="let lyr of layer.sublayers"

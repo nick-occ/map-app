@@ -24,6 +24,12 @@ export class MapService {
   mapView: any;
   toggleButtons = MAP_TOGGLE;
   mapViewInfo: MapViewInfo[] = [];
+  mapLegendItems: {
+    mapUrl: string,
+    layerId: number,
+    layerName: string,
+    legend: []
+  }[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -76,12 +82,12 @@ export class MapService {
       mapUrl: layer.url,
       mapType: map.mapType,
       visible: layer.visible,
-      layers: this.getLayers(layer.sublayers.items)
+      layers: this.getLayers(layer.sublayers.items, layer.url)
     };
     this.mapViewInfo.push(layerItem);
   }
 
-  getLayers(layers: []): MapLayer[] {
+  getLayers(layers: [], mapUrl): MapLayer[] {
     return layers.map((layer: any) => {
       const layerObj: MapLayer = {
         layerName: layer.title,
@@ -106,4 +112,13 @@ export class MapService {
     return of(this.mapViewInfo);
   }
 
+  getMapLegend(url): Observable<any> {
+    return this.http.get(`${url}/legend?f=json`);
+  }
+
+  getLayerLegendItem(mapUrl: string, layerId: number): any {
+    return this.mapLegendItems.filter(item => item.mapUrl === mapUrl && item.layerId === layerId);
+  }
 }
+
+

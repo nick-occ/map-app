@@ -121,6 +121,17 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
         });
       }
 
+      this.mapService.getMapLegend(m.url).subscribe(legend => {
+          legend.layers.filter(lyr => {
+            return 'legend' in lyr;
+          }).forEach(lyr => {
+            this.mapService.mapLegendItems.push({
+              mapUrl: m.url,
+              ...lyr
+            });
+          });
+        });
+
       this.esriMap.add(layer);
       this.mapService.mapView.whenLayerView(layer).then(() => {
         this.mapService.setMapViewInfo(layer, m);
