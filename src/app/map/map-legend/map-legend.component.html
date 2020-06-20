@@ -1,5 +1,7 @@
 <div style="width: 250px;">
-    Legend
-  <div id="legendContainer"></div>
+    <h4><b>Legend</b></h4>
+  <mat-accordion multi="true">
+    <app-map-legend-item *ngFor="let info of mapViewInfo" [item]="info"></app-map-legend-item>
+  </mat-accordion>
 </div>
 

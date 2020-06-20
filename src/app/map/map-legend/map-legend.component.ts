@@ -1,6 +1,14 @@
-import {Component, OnInit, AfterViewInit, OnChanges, SimpleChanges, Input} from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild
+} from '@angular/core';
+import {DOCUMENT} from '@angular/common';
 import {loadModules} from 'esri-loader';
 import {MapService} from '../shared/map.service';
+import {MapViewInfo} from '../shared/map-view-info';
+
 
 @Component({
   selector: 'app-map-legend',
@@ -9,9 +17,21 @@ import {MapService} from '../shared/map.service';
 })
 export class MapLegendComponent implements OnInit, AfterViewInit {
 
+  mapViewInfo: MapViewInfo[] = [];
+  @ViewChild('mapLegend') mapLegend: any;
+  @ViewChild('mapLayerLegend') mapLayerLegend: any;
+  @ViewChild('mapSublayerLegend') mapSublayerLegend: any;
+
   constructor(private mapService: MapService) { }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    this.mapService.getMapViewInfo().subscribe(info => {
+      this.mapViewInfo = info;
+      console.log('info', info);
+    }, error => {
+      console.log(error);
+    });
+  }
 
   ngOnInit(): void {
 

@@ -7,5 +7,5 @@ export const PROJECT: [Project] = [{
     basemap: 'osm',
     center: [-80.7366, 35.3081],
     zoom: 17,
-    maps: [2]
+    maps: [2, 3]
   }];
