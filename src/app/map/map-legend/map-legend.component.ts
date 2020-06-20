@@ -2,25 +2,12 @@ import {
   Component,
   OnInit,
   AfterViewInit,
-  OnChanges,
-  SimpleChanges,
-  Input,
-  ViewChild,
-  ElementRef,
-  Renderer2,
-  RendererFactory2,
-  RendererType2,
-  TemplateRef,
-  ViewChildren,
-  ContentChild,
-  Directive,
-  AfterContentInit,
-  ViewRef, Inject
+  ViewChild
 } from '@angular/core';
 import {DOCUMENT} from '@angular/common';
 import {loadModules} from 'esri-loader';
 import {MapService} from '../shared/map.service';
-import {MapViewInfo} from "../shared/map-view-info";
+import {MapViewInfo} from '../shared/map-view-info';
 
 
 @Component({
@@ -44,22 +31,6 @@ export class MapLegendComponent implements OnInit, AfterViewInit {
     }, error => {
       console.log(error);
     });
-  }
-
-
-  mapLegendChanged(evt): void {
-    console.log(evt.target.checked);
-    console.log(this.mapService.mapView);
-    console.log(evt);
-    this.mapService.mapView.layerViews.items[0].visible = evt.target.checked;
-  }
-
-  mapLayerLegendChanged(evt): void {
-    console.log(evt.target.checked);
-  }
-
-  mapSublayerLegendChanged(evt): void {
-    console.log(evt.target.checked);
   }
 
   ngOnInit(): void {

@@ -67,18 +67,10 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
         map: this.esriMap
       };
 
-
-
-      // this.view = new MapView(mapViewProp);
-      // this.mapService.mapView = this.view;
       this.mapService.mapView = new MapView(mapViewProp);
 
       // load layer in map
       await this.loadLayers();
-
-      const legend = new Legend({
-        view:  this.mapService.mapView
-      }, 'legendContainer');
 
       await this.identify();
 
