@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {MatButtonToggle} from '@angular/material/button-toggle';
-import {MAP_TOOL} from '../shared/mock-map-tool';
+import {MapService} from "../shared/map.service";
 
 @Component({
   selector: 'app-map-menubar',
@@ -9,9 +8,9 @@ import {MAP_TOOL} from '../shared/mock-map-tool';
 })
 export class MapMenubarComponent implements OnInit {
   @Input() projectName = '';
-  mapTools = MAP_TOOL;
+  mapTools = this.mapService.mapTools;
 
-  constructor() { }
+  constructor(private mapService: MapService) { }
 
   ngOnInit() {
   }
