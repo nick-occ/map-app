@@ -30,6 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MapLegendItemLayersComponent } from './map/map-legend-item-layers/map-legend-item-layers.component';
 
 import { OrderModule } from 'ngx-order-pipe';
+import { MapSearchComponent } from './map/map-search/map-search.component';
+import { MapSearchItemsComponent } from './map/map-search-items/map-search-items.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { OrderModule } from 'ngx-order-pipe';
     MapMenubarItemComponent,
     MapLegendItemComponent,
     MapLegendItemLayersComponent,
+    MapSearchComponent,
+    MapSearchItemsComponent,
   ],
     imports: [
       BrowserModule,
