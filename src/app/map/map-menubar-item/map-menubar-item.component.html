@@ -1,6 +1,12 @@
+<div [ngSwitch]="tool.inputType">
 <mat-button-toggle
+  *ngSwitchCase="1"
   #buttonToggle
-  [checked]="tool.checked"
+  [checked]="getToggleState(tool.name)"
   (click)=this.buttonClick()
 > {{tool.name}}
 </mat-button-toggle>
+  <label>
+    <input #textbox type="text" placeholder="{{tool.name}}" *ngSwitchCase="2" (keyup.enter)="onKey(textbox.value)"/>
+  </label>
+</div>

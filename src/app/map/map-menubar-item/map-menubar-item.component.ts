@@ -47,4 +47,23 @@ export class MapMenubarItemComponent implements OnInit, AfterViewInit {
     this.closeIdentify();
   }
 
+  onKey(val): void {
+    this.mapService.getSearchResults(val).subscribe(data => {
+      data.forEach(res => {
+        res.results.subscribe(r => {
+          if (r.results.length > 0) {
+            // show legend
+            this.mapService.toggleButtons.Legend = true;
+            this.mapService.searchResults.push(
+              {
+                mapName: res.mapName,
+                results: r.results
+              });
+          }
+        });
+      });
+    });
+    console.log(this.mapService.searchResults);
+  }
+
 }
