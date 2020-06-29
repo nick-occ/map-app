@@ -6,7 +6,7 @@ export interface MapTool {
   category: MapToolCategory;
   name: string;
   inputType: MapToolInputType;
-  checked: boolean;
+  checked?: boolean;
 }
 
 export interface MapToggle {
