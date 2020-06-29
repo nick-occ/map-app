@@ -17,5 +17,11 @@ export const MAPS: Map[] = [{
     name: 'FY16-20 Map',
     url: 'https://openmaps.uncc.edu/opengis/rest/services/Construction/FY16_FY20_Construction/MapServer',
     mapType: 'dynamic'
+  },
+  {
+    mapId: 4,
+    name: 'Campus Map',
+    url: 'https://openmaps.uncc.edu/opengis/rest/services/AllCampusNew/MapServer',
+    mapType: 'dynamic'
   }
 ];
