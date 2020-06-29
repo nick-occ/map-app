@@ -1,7 +1,11 @@
-<div style="width: 250px;">
-    <h4><b>Legend</b></h4>
+<mat-expansion-panel [expanded]="true">
+  <mat-expansion-panel-header>
+    <div style="width: 250px;">
+        <h4><b>Legend</b></h4>
+    </div>
+  </mat-expansion-panel-header>
   <mat-accordion multi="true">
     <app-map-legend-item *ngFor="let info of mapViewInfo" [item]="info"></app-map-legend-item>
   </mat-accordion>
-</div>
+
 
