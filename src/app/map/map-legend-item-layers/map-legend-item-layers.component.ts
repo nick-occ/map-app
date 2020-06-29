@@ -23,7 +23,6 @@ export class MapLegendItemLayersComponent implements OnInit, AfterContentInit {
 
   ngAfterContentInit() {
     this.mapService.getLayerLegendItem(this.mapUrl, this.layer.layerId).forEach(item => {
-      console.log(item.legend);
       this.legend = item.legend;
     });
   }

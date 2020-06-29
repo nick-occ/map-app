@@ -63,7 +63,6 @@ export class MapIdentifyResultsComponent implements OnInit, OnChanges {
 
     this.mapService.mapView.graphics.removeAll();
 
-    console.log(result.feature.geometry.type);
     let symbol;
     switch (result.feature.geometry.type) {
       case 'polygon':

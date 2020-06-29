@@ -27,7 +27,6 @@ export class MapLegendComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.mapService.getMapViewInfo().subscribe(info => {
       this.mapViewInfo = info;
-      console.log('info', info);
     }, error => {
       console.log(error);
     });

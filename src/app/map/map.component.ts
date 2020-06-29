@@ -158,7 +158,6 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
     const observer = {
       next: results => {
         results.forEach(result => {
-          console.log(result);
           this.idResults.push(result);
         });
         if (this.idResults.length > 0 ) {
