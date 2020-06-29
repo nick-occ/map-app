@@ -21,6 +21,12 @@ export const MAP_TOOL: MapTool[] = [
     name: 'Legend',
     inputType: MapToolInputType.toggleButton,
     checked: false
+  }, {
+    id: 4,
+    category: MapToolCategory.public,
+    name: 'Search',
+    inputType: MapToolInputType.textBox,
+    checked: false
   }];
 
 export const MAP_TOGGLE: MapToggle = {

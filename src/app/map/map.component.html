@@ -1,7 +1,10 @@
 <mat-drawer-container class='app-container'>
 
   <mat-drawer #drawer mode="side" [opened]=this.getToggleState().Legend>
-        <app-map-legend></app-map-legend>
+    <mat-accordion multi="true">
+      <app-map-search></app-map-search>
+      <app-map-legend></app-map-legend>
+    </mat-accordion>
   </mat-drawer>
 
   <mat-drawer-content>

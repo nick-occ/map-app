@@ -2,11 +2,7 @@ import {
   Component,
   Input,
   OnInit,
-  AfterContentInit,
-  ViewChild,
-  AfterViewInit,
-  Output,
-  EventEmitter
+  ViewChild
 } from '@angular/core';
 import {MapToolCategory} from '../shared/map-tool-category.enum';
 import {MapTool} from '../shared/map-tool';
@@ -18,7 +14,7 @@ import {MapService} from '../shared/map.service';
   templateUrl: './map-menubar-item.component.html',
   styleUrls: ['./map-menubar-item.component.css']
 })
-export class MapMenubarItemComponent implements OnInit, AfterViewInit {
+export class MapMenubarItemComponent implements OnInit {
   @Input() tool: MapTool;
   @ViewChild('buttonToggle') buttonToggle: MatButtonToggle;
 
@@ -28,23 +24,40 @@ export class MapMenubarItemComponent implements OnInit, AfterViewInit {
     this.mapService.toggleButtons[this.tool.name] = this.buttonToggle.checked;
   }
 
+  getToggleState(name: string): boolean {
+    return this.mapService.getToggleState(name);
+  }
+
   closeIdentify(): void {
-    if (this.tool.name == 'Identify' && !this.buttonToggle.checked) {
+    if (this.tool.name === 'Identify' && !this.buttonToggle.checked) {
       this.mapService.showIdentify();
     }
   }
 
-  ngAfterViewInit() {
-    this.setToggleButton();
-  }
-
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void { }
 
   buttonClick() {
     this.setToggleButton();
     this.closeIdentify();
+  }
+
+  onKey(val): void {
+    this.mapService.getSearchResults(val).subscribe(data => {
+      data.forEach(res => {
+        res.results.subscribe(r => {
+          if (r.results.length > 0) {
+            // show legend
+            this.mapService.toggleButtons.Legend = true;
+            this.mapService.searchResults.push(
+              {
+                mapName: res.mapName,
+                results: r.results
+              });
+          }
+        });
+      });
+    });
+    console.log(this.mapService.searchResults);
   }
 
 }
