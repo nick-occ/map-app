@@ -4,7 +4,7 @@
            type="checkbox"
            [checked]="layer.visible"
            [value]="layer.layerId"
-           (change)="mapLegendChanged()"
+           (change)="layerChanged()"
     />
     {{layer.layerName}}
   </label>
@@ -17,6 +17,7 @@
   <div *ngIf="layer.sublayers" style="margin-left: 20px;">
   <app-map-legend-item-layers
     *ngFor="let lyr of layer.sublayers"
+    [mapType]="this.mapType"
     [mapUrl]="this.mapUrl"
     [layer]="lyr">
   </app-map-legend-item-layers>

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {MapService} from "../shared/map.service";
-import {MapViewInfo} from "../shared/map-view-info";
+import {MapService} from '../shared/map.service';
+import {MapViewInfo} from '../shared/map-view-info';
 
 @Component({
   selector: 'app-map-legend-item',

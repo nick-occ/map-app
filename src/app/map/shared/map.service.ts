@@ -34,6 +34,11 @@ export class MapService {
     legend: []
   }[] = [];
   searchResults: MapSearchResults[] = [];
+  mapLayerLegendElements: {
+    mapUrl: string;
+    layerId: number;
+    element: any;
+  }[] = [];
 
   constructor(private http: HttpClient) { }
 

@@ -3,5 +3,6 @@ export interface MapLayer {
   layerId: number;
   visible: boolean;
   image?: string;
+  element?: any;
   sublayers?: MapLayer[];
 }
