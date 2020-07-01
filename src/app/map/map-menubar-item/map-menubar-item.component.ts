@@ -45,7 +45,7 @@ export class MapMenubarItemComponent implements OnInit {
     this.mapService.getSearchResults(val).subscribe(data => {
       data.forEach(res => {
         res.results.subscribe(r => {
-          if (r.results.length > 0) {
+          if (r.results) {
             // show legend
             this.mapService.toggleButtons.Legend = true;
             this.mapService.searchResults.push(
