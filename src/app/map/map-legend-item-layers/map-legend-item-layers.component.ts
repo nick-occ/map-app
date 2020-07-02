@@ -36,8 +36,6 @@ export class MapLegendItemLayersComponent implements OnInit, AfterContentInit, A
   }
 
   @Input() layerChanged() {
-    console.log('layer changed');
-    // console.log(this.mapLayerLegendElements);
     // loop through maps in the MapView object
     for (const map of this.mapService.mapView.layerViews.items) {
       if (map.layer.url === this.mapUrl) {
