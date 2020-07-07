@@ -2,6 +2,7 @@ import {AfterContentInit, AfterViewInit, Component, Input, OnInit, ViewChild} fr
 import {MapService} from '../shared/map.service';
 import {MapLayer} from '../shared/map-layer';
 import {MapLegend} from '../shared/map-legend';
+import {MapViewInfo} from '../shared/map-view-info';
 
 @Component({
   selector: 'app-map-legend-item-layers',
@@ -35,8 +36,7 @@ export class MapLegendItemLayersComponent implements OnInit, AfterContentInit, A
     });
   }
 
-  @Input() layerChanged() {
-    // loop through maps in the MapView object
+  layerChanged() {
     for (const map of this.mapService.mapView.layerViews.items) {
       if (map.layer.url === this.mapUrl) {
         // if map is found loop through all the layers
@@ -60,13 +60,24 @@ export class MapLegendItemLayersComponent implements OnInit, AfterContentInit, A
                 // set the visibility of the sublayer
                 subItem.visible = this.mapLayerLegend.nativeElement.checked;
               }
+            } else if (!item.sublayers && this.mapLayerLegend.nativeElement.checked === true) {
+              this.mapService.mapLayerLegendElements.filter(m => m.layerId === this.layer.parentId)
+                .forEach(parent => {
+                  parent.element.nativeElement.checked = this.mapLayerLegend.nativeElement.checked;
+                });
+
+              for (const lyr of map.layer.allSublayers.items) {
+                // match by parentId
+                if (lyr.id === this.layer.parentId) {
+                  // set the visibility based on checked property of the checkbox
+                  lyr.visible = this.mapLayerLegend.nativeElement.checked;
+                }
+              }
             }
-            // TODO: else if - no sublayer and layer is checked make sure group layer is on
             break;
           }
         }
       }
     }
   }
-
 }

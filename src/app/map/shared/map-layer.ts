@@ -4,5 +4,6 @@ export interface MapLayer {
   visible: boolean;
   image?: string;
   element?: any;
+  parentId?: number;
   sublayers?: MapLayer[];
 }

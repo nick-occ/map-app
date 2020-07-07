@@ -109,7 +109,8 @@ export class MapService {
           return {
             layerName: item.title,
             layerId: item.id,
-            visible: item.visible
+            visible: item.visible,
+            parentId: layer.id
           };
         });
       }
