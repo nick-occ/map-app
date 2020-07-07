@@ -45,7 +45,7 @@ import { MapSearchItemsComponent } from './map/map-search-items/map-search-items
     MapLegendItemComponent,
     MapLegendItemLayersComponent,
     MapSearchComponent,
-    MapSearchItemsComponent,
+    MapSearchItemsComponent
   ],
     imports: [
       BrowserModule,
