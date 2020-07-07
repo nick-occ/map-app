@@ -1,19 +1,22 @@
 import {Component, OnInit, OnChanges, SimpleChanges} from '@angular/core';
+import {MapSearchResults} from '../shared/map-search-results';
+import {MapService} from '../shared/map.service';
 
 @Component({
   selector: 'app-map-search',
   templateUrl: './map-search.component.html',
   styleUrls: ['./map-search.component.css']
 })
-export class MapSearchComponent implements OnInit, OnChanges {
+export class MapSearchComponent implements OnInit {
 
-  constructor() { }
+  constructor(private mapService: MapService) { }
 
   ngOnInit(): void {
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
+  getSearchResults(): MapSearchResults[] {
+    // TODO: show layer name as list item
+    return this.mapService.searchResults;
   }
 
 }

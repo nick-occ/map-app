@@ -5,7 +5,11 @@
     </div>
   </mat-expansion-panel-header>
   <mat-accordion multi="true">
-  <app-map-search-items></app-map-search-items>
+    <div *ngFor="let results of getSearchResults()">
+      <b><label>{{results.mapName}}</label></b>
+      <div *ngFor="let result of results.results">
+          <app-map-search-items [result]="result"></app-map-search-items>
+      </div>
+    </div>
   </mat-accordion>
-
 </mat-expansion-panel>

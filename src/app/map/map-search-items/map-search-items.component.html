@@ -1,12 +1,10 @@
-<div *ngFor="let rec of getSearchResults()">
-  <h6>{{rec.mapName}}</h6>
-  <div *ngFor="let res of rec.results">
-    <ul>
-    <li>{{res.layerName}}
-      <ul>
-          <li [ngStyle]="{color: 'blue', textDecoration: 'underline', cursor: 'pointer'}" (click)="layerClick(res)">{{res.attributes[res.displayFieldName]}}</li>
-        </ul>
-    </li>
-    </ul>
-  </div>
-</div>
+<ul>
+  <li
+    [ngStyle]="{color: 'blue', textDecoration: 'underline', cursor: 'pointer'}"
+    (click)="layerClick(result)">
+    <div
+      [ngStyle]="{display: 'flex'}">
+          {{this.displayName}}
+    </div>
+  </li>
+</ul>
