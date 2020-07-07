@@ -42,10 +42,17 @@ export class MapMenubarItemComponent implements OnInit {
   }
 
   onKey(val): void {
+    // TODO: add button to clear search results
+    // TODO: limit only top 25 results and notify user that only those top results are being shown
     this.mapService.getSearchResults(val).subscribe(data => {
       data.forEach(res => {
         res.results.subscribe(r => {
-          if (r.results) {
+          if (r.error) {
+            alert(r.error.message);
+            return r.error.code;
+          }
+          
+          if (r.results.length > 0) {
             // show legend
             this.mapService.toggleButtons.Legend = true;
             this.mapService.searchResults.push(
@@ -53,6 +60,8 @@ export class MapMenubarItemComponent implements OnInit {
                 mapName: res.mapName,
                 results: r.results
               });
+          } else {
+            alert('No results found.');
           }
         });
       });
