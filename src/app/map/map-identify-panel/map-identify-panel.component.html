@@ -1,9 +1,27 @@
 <mat-card cdkDrag cdkDragRootElement=".cdk-overlay-pane">
-  <button (click)="hideIdPanel()">Close</button>
+  <button (click)="hideIdPanel()"
+          mat-icon-button color="primary"
+          aria-label="close button">
+    <mat-icon>close</mat-icon>
+  </button>
   <mat-card-title>
-    <button (click)="recClick('prev')" id="prevIdRecord" [ngStyle]="{visibility:idPrevVisRec}"><</button>
+    <button
+      (click)="recClick('prev')"
+      id="prevIdRecord"
+      [ngStyle]="{visibility:idPrevVisRec}"
+      mat-icon-button color="primary"
+      aria-label="previous record button">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
     <h3>{{currentMapName}}</h3>
-    <button (click)="recClick('next')" id="nextIdRecord" [ngStyle]="{visibility:idNextVisRec}">></button>
+    <button
+      (click)="recClick('next')"
+      id="nextIdRecord"
+      [ngStyle]="{visibility:idNextVisRec}"
+      mat-icon-button color="primary"
+      aria-label="next record button">
+      <mat-icon>arrow_forward</mat-icon>
+    </button>
   </mat-card-title>
   <app-map-identify-results [currentResult]="currentResult"></app-map-identify-results>
 </mat-card>
