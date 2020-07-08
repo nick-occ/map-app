@@ -51,7 +51,7 @@ export class MapMenubarItemComponent implements OnInit {
             alert(r.error.message);
             return r.error.code;
           }
-          
+
           if (r.results.length > 0) {
             // show legend
             this.mapService.toggleButtons.Legend = true;
@@ -66,7 +66,6 @@ export class MapMenubarItemComponent implements OnInit {
         });
       });
     });
-    console.log(this.mapService.searchResults);
   }
 
 }
