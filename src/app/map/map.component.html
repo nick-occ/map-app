@@ -11,6 +11,7 @@
     <app-map-menubar [projectName]="projectName"></app-map-menubar>
     <div class="map-container mat-app-background basic-container">
         <div #mapViewNode></div>
+        <app-map-results-panel></app-map-results-panel>
         <app-map-identify-panel
           *ngIf="getIdShow()"
           [idResults]="idResults"

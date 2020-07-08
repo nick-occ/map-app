@@ -1,0 +1,13 @@
+mat-card {
+  width: 500px;
+}
+
+mat-card-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+:host {
+  position: absolute;
+}

@@ -15,6 +15,7 @@ import {MapView} from './map-view';
 import {MapLayer} from './map-layer';
 import {MapSearchResults} from './map-search-results';
 import {loadModules} from 'esri-loader';
+import {MapSearchResult} from './map-search-result';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ import {loadModules} from 'esri-loader';
 export class MapService {
   idRecord = 0;
   idShow = false;
-  // mapView: {graphics: {add, removeAll}, goTo, ui, layerViews: {items}, width, height, on};
+  searchShow = false;
   mapView: any;
   toggleButtons = MAP_TOGGLE;
   mapTools = MAP_TOOL;
@@ -34,6 +35,7 @@ export class MapService {
     legend: []
   }[] = [];
   searchResults: MapSearchResults[] = [];
+  searchResult: MapSearchResult;
   mapLayerLegendElements: {
     mapUrl: string;
     layerId: number;

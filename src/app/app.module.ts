@@ -32,6 +32,9 @@ import { MapLegendItemLayersComponent } from './map/map-legend-item-layers/map-l
 import { OrderModule } from 'ngx-order-pipe';
 import { MapSearchComponent } from './map/map-search/map-search.component';
 import { MapSearchItemsComponent } from './map/map-search-items/map-search-items.component';
+import { MapResultsPanelComponent } from './map/map-results-panel/map-results-panel.component';
+import { MapResultsComponent } from './map/map-results/map-results.component';
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -45,7 +48,9 @@ import { MapSearchItemsComponent } from './map/map-search-items/map-search-items
     MapLegendItemComponent,
     MapLegendItemLayersComponent,
     MapSearchComponent,
-    MapSearchItemsComponent
+    MapSearchItemsComponent,
+    MapResultsPanelComponent,
+    MapResultsComponent
   ],
     imports: [
       BrowserModule,
@@ -60,6 +65,7 @@ import { MapSearchItemsComponent } from './map/map-search-items/map-search-items
       MatSortModule,
       MatSidenavModule,
       MatButtonModule,
+      MatIconModule,
       MatMenuModule,
       MatToolbarModule,
       MatButtonToggleModule,

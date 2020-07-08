@@ -1,0 +1,14 @@
+<mat-card *ngIf="showSearch()" cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+
+  <mat-card-title>
+    <h5>{{getResult().layerName}}</h5>
+
+    <button
+      (click)="closeSearch()"
+      mat-icon-button color="primary"
+      aria-label="Close button">
+        <mat-icon>close</mat-icon>
+      </button>
+  </mat-card-title>
+  <app-map-results [result]="getResult()"></app-map-results>
+</mat-card>
