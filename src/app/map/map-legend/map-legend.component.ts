@@ -7,7 +7,7 @@ import {
 import {DOCUMENT} from '@angular/common';
 import {loadModules} from 'esri-loader';
 import {MapService} from '../shared/map.service';
-import {MapViewInfo} from '../shared/map-view-info';
+import {MapViewInfo} from '../shared/models/map-view-info';
 
 
 @Component({

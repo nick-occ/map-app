@@ -5,7 +5,7 @@ import {
   ViewChild
 } from '@angular/core';
 import {MapToolCategory} from '../shared/map-tool-category.enum';
-import {MapTool} from '../shared/map-tool';
+import {MapTool} from '../shared/models/map-tool';
 import {MatButtonToggle} from '@angular/material/button-toggle';
 import {MapService} from '../shared/map.service';
 

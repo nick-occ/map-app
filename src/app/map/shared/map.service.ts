@@ -4,18 +4,18 @@ import {from, Observable, of, Subject, Subscription} from 'rxjs';
 import {Map} from './map';
 import {Project} from './project';
 
-import {MAPS} from './mock-map';
-import {MAP_TOGGLE, MAP_TOOL} from './mock-map-tool';
-import {PROJECT} from './mock-project';
+import {MAPS} from './mocks/mock-map';
+import {MAP_TOGGLE, MAP_TOOL} from './mocks/mock-map-tool';
+import {PROJECT} from './mocks/mock-project';
 import {map, subscribeOn} from 'rxjs/operators';
-import {MapToggle} from './map-tool';
+import {MapToggle} from './models/map-tool';
 import {HttpClient} from '@angular/common/http';
-import {MapViewInfo} from './map-view-info';
-import {MapView} from './map-view';
+import {MapViewInfo} from './models/map-view-info';
+import {MapView} from './models/map-view';
 import {MapLayer} from './map-layer';
-import {MapSearchResults} from './map-search-results';
+import {MapSearchResults} from './models/map-search-results';
 import {loadModules} from 'esri-loader';
-import {MapSearchResult} from './map-search-result';
+import {MapSearchResult} from './models/map-search-result';
 
 @Injectable({
   providedIn: 'root'
@@ -177,7 +177,6 @@ export class MapService {
   getToggleState(name: string): boolean {
     return this.toggleButtons[name];
   }
-
 
   // @ts-ignore
   async highlightFeature(feature, geometryType, zoom= false): void {

@@ -1,6 +1,6 @@
-import {MapToggle, MapTool} from './map-tool';
-import {MapToolCategory} from './map-tool-category.enum';
-import {MapToolInputType} from './map-tool-input-type.enum';
+import {MapToggle, MapTool} from '../models/map-tool';
+import {MapToolCategory} from '../map-tool-category.enum';
+import {MapToolInputType} from '../map-tool-input-type.enum';
 
 export const MAP_TOOL: MapTool[] = [
   {

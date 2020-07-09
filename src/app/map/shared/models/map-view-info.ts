@@ -1,4 +1,4 @@
-import {MapLayer} from './map-layer';
+import {MapLayer} from '../map-layer';
 
 export interface MapViewInfo {
   mapName: string;

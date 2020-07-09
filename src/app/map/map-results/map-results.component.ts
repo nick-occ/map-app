@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {MapSearchResult} from "../shared/map-search-result";
+import {MapSearchResult} from "../shared/models/map-search-result";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {MapService} from "../shared/map.service";

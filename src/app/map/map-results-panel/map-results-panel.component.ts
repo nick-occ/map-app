@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {MapSearchResult} from '../shared/map-search-result';
+import {MapSearchResult} from '../shared/models/map-search-result';
 import {MapService} from '../shared/map.service';
 
 @Component({

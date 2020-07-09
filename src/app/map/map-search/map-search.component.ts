@@ -1,5 +1,5 @@
 import {Component, OnInit, OnChanges, SimpleChanges} from '@angular/core';
-import {MapSearchResults} from '../shared/map-search-results';
+import {MapSearchResults} from '../shared/models/map-search-results';
 import {MapService} from '../shared/map.service';
 
 @Component({

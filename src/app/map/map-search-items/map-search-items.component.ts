@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MapService} from '../shared/map.service';
-import {MapSearchResult} from '../shared/map-search-result';
+import {MapSearchResult} from '../shared/models/map-search-result';
 
 @Component({
   selector: 'app-map-search-items',

@@ -1,8 +1,8 @@
 import {AfterContentInit, AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MapService} from '../shared/map.service';
 import {MapLayer} from '../shared/map-layer';
-import {MapLegend} from '../shared/map-legend';
-import {MapViewInfo} from '../shared/map-view-info';
+import {MapLegend} from '../shared/models/map-legend';
+import {MapViewInfo} from '../shared/models/map-view-info';
 
 @Component({
   selector: 'app-map-legend-item-layers',

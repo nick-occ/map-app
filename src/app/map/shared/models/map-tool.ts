@@ -1,5 +1,5 @@
-import {MapToolCategory} from './map-tool-category.enum';
-import {MapToolInputType} from './map-tool-input-type.enum';
+import {MapToolCategory} from '../map-tool-category.enum';
+import {MapToolInputType} from '../map-tool-input-type.enum';
 
 export interface MapTool {
   id: number;

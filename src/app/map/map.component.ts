@@ -14,7 +14,7 @@ import { MapService } from './shared/map.service';
 import {Project} from './shared/project';
 import {Observable} from 'rxjs';
 import {MatButtonToggle} from '@angular/material/button-toggle';
-import {MapViewInfo} from './shared/map-view-info';
+import {MapViewInfo} from './shared/models/map-view-info';
 
 @Component({
   selector: 'app-map',
