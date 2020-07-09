@@ -42,15 +42,31 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
       const options = { css: true };
       loadCss('https://js.arcgis.com/4.15/esri/css/main.css');
       // load modules
-      const [EsriMap, MapView, Legend, LayerList] = await loadModules(['esri/Map', 'esri/views/MapView', 'esri/widgets/Legend', 'esri/widgets/LayerList'], options);
+      const [EsriMap, MapView, Basemap, TileLayer] = await loadModules(['esri/Map', 'esri/views/MapView', 'esri/Basemap', 'esri/layers/TileLayer'], options);
 
+      // TODO: set as parameter
       await this.getProject(1);
 
       // get map configuration
       await this.getMaps();
 
       // set map properties
-      const {basemap, center, zoom} = this.project;
+      const {center, zoom} = this.project;
+      let {basemap} = this.project;
+
+      // TODO: create better way to detect if custom basemap
+      if (typeof(basemap) === 'object') {
+        basemap = new Basemap({
+          baseLayers: [
+            new TileLayer({
+              url: basemap.url
+            })
+          ],
+          title: basemap.title,
+          id: basemap.id
+        });
+      }
+
 
       const mapProp = {
         basemap

@@ -1,6 +1,6 @@
 export class Project {
   projectId: number;
-  basemap: string;
+  basemap: any;
   center: number[];
   zoom: number;
   name: string;
