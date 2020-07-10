@@ -7,6 +7,7 @@ export interface MapTool {
   name: string;
   inputType: MapToolInputType;
   checked?: boolean;
+  togglePanel?: boolean;
 }
 
 export interface MapToggle {

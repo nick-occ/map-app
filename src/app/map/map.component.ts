@@ -220,6 +220,10 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
     return this.mapService.panelVisible.Identify;
  }
 
+ getPanelVisible(panel: string) {
+    return this.mapService.panelVisible[panel];
+ }
+
  getToggleState() {
     return this.mapService.toggleButtons;
  }

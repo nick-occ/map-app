@@ -20,26 +20,15 @@ export class MapMenubarItemComponent implements OnInit {
 
   constructor(private mapService: MapService) {}
 
-  setToggleButton(): void {
-    this.mapService.toggleButtons[this.tool.name] = this.buttonToggle.checked;
-  }
-
   getToggleState(name: string): boolean {
     return this.mapService.getToggleState(name);
-  }
-
-  closePanel(): void {
-    if (this.tool.name in this.mapService.panelVisible && !this.buttonToggle.checked) {
-      this.mapService.panelVisible[this.tool.name] = false;
-      this.mapService.mapView.graphics.removeAll();
-    }
   }
 
   ngOnInit(): void { }
 
   buttonClick() {
-    this.setToggleButton();
-    this.closePanel();
+    this.mapService.toggleButton(this.tool, this.buttonToggle.checked);
+    if (!this.buttonToggle.checked) { this.mapService.mapView.graphics.removeAll(); }
   }
 
   onKey(val): void {

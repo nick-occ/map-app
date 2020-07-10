@@ -8,13 +8,15 @@ export const MAP_TOOL: MapTool[] = [
     category: MapToolCategory.public,
     name: 'Identify',
     inputType: MapToolInputType.toggleButton,
-    checked: true
+    checked: true,
+    togglePanel: false
   }, {
     id: 2,
     category: MapToolCategory.edit,
     name: 'Edit',
     inputType: MapToolInputType.toggleButton,
-    checked: false
+    checked: false,
+    togglePanel: true
   }, {
     id: 3,
     category: MapToolCategory.public,
@@ -25,8 +27,7 @@ export const MAP_TOOL: MapTool[] = [
     id: 4,
     category: MapToolCategory.public,
     name: 'Search',
-    inputType: MapToolInputType.textBox,
-    checked: false
+    inputType: MapToolInputType.textBox
   }];
 
 export const MAP_TOGGLE: MapToggle = {

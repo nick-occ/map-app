@@ -11,9 +11,12 @@
     <app-map-menubar [projectName]="projectName"></app-map-menubar>
     <div class="map-container mat-app-background basic-container">
         <div #mapViewNode></div>
+        <app-map-edit-panel
+          *ngIf="getPanelVisible('Edit')">
+        </app-map-edit-panel>
         <app-map-results-panel></app-map-results-panel>
         <app-map-identify-panel
-          *ngIf="getIdPanelVisible()"
+          *ngIf="getPanelVisible('Identify')"
           [idResults]="idResults"
           [totalResults]="idResults.length"
           [currentResult]="currentResult"

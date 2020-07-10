@@ -1,12 +1,19 @@
 <div [ngSwitch]="tool.inputType">
-<mat-button-toggle
-  *ngSwitchCase="1"
-  #buttonToggle
-  [checked]="getToggleState(tool.name)"
-  (click)=this.buttonClick()
-> {{tool.name}}
-</mat-button-toggle>
-  <label>
-    <input #textbox type="text" placeholder="{{tool.name}}" *ngSwitchCase="2" (keyup.enter)="onKey(textbox.value)"/>
-  </label>
+  <div *ngSwitchCase="1" [ngTemplateOutlet]="toggleTemplate"></div>
+  <div *ngSwitchCase="2" [ngTemplateOutlet]="textboxTemplate"></div>
 </div>
+
+<ng-template #toggleTemplate>
+  <mat-button-toggle
+    #buttonToggle
+    [checked]="getToggleState(tool.name)"
+    (click)=this.buttonClick()
+  > {{tool.name}}
+  </mat-button-toggle>
+</ng-template>
+
+<ng-template #textboxTemplate>
+  <label>
+    <input #textbox type="text" placeholder="{{tool.name}}" (keyup.enter)="onKey(textbox.value)"/>
+  </label>
+</ng-template>

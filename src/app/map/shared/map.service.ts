@@ -8,7 +8,7 @@ import {MAPS} from './mocks/mock-map';
 import {MAP_PANEL_VISIBLE, MAP_TOGGLE, MAP_TOOL} from './mocks/mock-map-tool';
 import {PROJECT} from './mocks/mock-project';
 import {map, subscribeOn} from 'rxjs/operators';
-import {MapToggle} from './models/map-tool';
+import {MapToggle, MapTool} from './models/map-tool';
 import {HttpClient} from '@angular/common/http';
 import {MapViewInfo} from './models/map-view-info';
 import {MapView} from './models/map-view';
@@ -16,6 +16,7 @@ import {MapLayer} from './map-layer';
 import {MapSearchResults} from './models/map-search-results';
 import {loadModules} from 'esri-loader';
 import {MapSearchResult} from './models/map-search-result';
+import {MatButtonToggle} from '@angular/material/button-toggle';
 
 @Injectable({
   providedIn: 'root'
@@ -234,6 +235,11 @@ export class MapService {
 
   zoomToFeature(feature) {
     this.mapView.goTo(feature);
+  }
+
+  toggleButton(button: MapTool, state: boolean) {
+    this.toggleButtons[button.name] = state;
+    if (button.togglePanel || !state) { this.panelVisible[button.name] = state; }
   }
 }
 
