@@ -13,7 +13,7 @@
         <div #mapViewNode></div>
         <app-map-results-panel></app-map-results-panel>
         <app-map-identify-panel
-          *ngIf="getIdShow()"
+          *ngIf="getIdPanelVisible()"
           [idResults]="idResults"
           [totalResults]="idResults.length"
           [currentResult]="currentResult"

@@ -1,4 +1,4 @@
-import {MapToggle, MapTool} from '../models/map-tool';
+import {MapPanelVisible, MapToggle, MapTool} from '../models/map-tool';
 import {MapToolCategory} from '../map-tool-category.enum';
 import {MapToolInputType} from '../map-tool-input-type.enum';
 
@@ -33,4 +33,10 @@ export const MAP_TOGGLE: MapToggle = {
   Identify: true,
   Edit: false,
   Legend: false
+};
+
+export const MAP_PANEL_VISIBLE: MapPanelVisible = {
+  Identify: false,
+  Edit: false,
+  Search: false
 };

@@ -178,7 +178,7 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
         });
         if (this.idResults.length > 0 ) {
           // this.idVisible = 'visible';
-          this.mapService.idShow = true;
+          this.mapService.panelVisible.Identify = true;
           this.currentMapName = this.idResults[this.mapService.idRecord].mapName;
           this.currentResult = this.idResults[this.mapService.idRecord].result;
         } else {
@@ -212,11 +212,12 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
   }
 
   onClosed(show) {
-    this.mapService.showIdentify(show);
+    this.mapService.panelVisible.Identify = show;
+    this.mapService.mapView.graphics.removeAll();
   }
 
- getIdShow() {
-    return this.mapService.idShow;
+ getIdPanelVisible() {
+    return this.mapService.panelVisible.Identify;
  }
 
  getToggleState() {

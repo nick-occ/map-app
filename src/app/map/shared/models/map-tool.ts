@@ -14,3 +14,9 @@ export interface MapToggle {
   Edit: boolean;
   Legend: boolean;
 }
+
+export interface MapPanelVisible {
+  Identify: boolean;
+  Search: boolean;
+  Edit: boolean;
+}

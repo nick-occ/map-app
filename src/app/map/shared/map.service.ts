@@ -5,7 +5,7 @@ import {Map} from './map';
 import {Project} from './project';
 
 import {MAPS} from './mocks/mock-map';
-import {MAP_TOGGLE, MAP_TOOL} from './mocks/mock-map-tool';
+import {MAP_PANEL_VISIBLE, MAP_TOGGLE, MAP_TOOL} from './mocks/mock-map-tool';
 import {PROJECT} from './mocks/mock-project';
 import {map, subscribeOn} from 'rxjs/operators';
 import {MapToggle} from './models/map-tool';
@@ -22,10 +22,10 @@ import {MapSearchResult} from './models/map-search-result';
 })
 export class MapService {
   idRecord = 0;
-  idShow = false;
   searchShow = false;
   mapView: any;
   toggleButtons = MAP_TOGGLE;
+  panelVisible = MAP_PANEL_VISIBLE;
   mapTools = MAP_TOOL;
   mapViewInfo: MapViewInfo[] = [];
   mapLegendItems: {
@@ -76,15 +76,6 @@ export class MapService {
     return Object.entries(attributes).map(attribute => {
       return {field: attribute[0], value: attribute[1]};
     });
-  }
-
-  showIdentify(show= false): void {
-    this.idShow = show;
-    this.mapView.graphics.removeAll();
-  }
-
-  getLegend(url): Observable<any[]> {
-    return this.http.get<any[]>(url);
   }
 
   setMapViewInfo(layer, map): any {

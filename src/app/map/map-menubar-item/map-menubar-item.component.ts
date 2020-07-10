@@ -28,9 +28,10 @@ export class MapMenubarItemComponent implements OnInit {
     return this.mapService.getToggleState(name);
   }
 
-  closeIdentify(): void {
-    if (this.tool.name === 'Identify' && !this.buttonToggle.checked) {
-      this.mapService.showIdentify();
+  closePanel(): void {
+    if (this.tool.name in this.mapService.panelVisible && !this.buttonToggle.checked) {
+      this.mapService.panelVisible[this.tool.name] = false;
+      this.mapService.mapView.graphics.removeAll();
     }
   }
 
@@ -38,7 +39,7 @@ export class MapMenubarItemComponent implements OnInit {
 
   buttonClick() {
     this.setToggleButton();
-    this.closeIdentify();
+    this.closePanel();
   }
 
   onKey(val): void {
