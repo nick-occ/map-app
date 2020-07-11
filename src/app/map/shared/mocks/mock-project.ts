@@ -1,5 +1,5 @@
-import { Project } from '../project';
-
+import {Project} from '../models/project';
+import {MapToolCategory} from '../enums/map-tool-category.enum';
 
 // test data
 export const PROJECT: Project[] = [{

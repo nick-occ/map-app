@@ -1,4 +1,4 @@
-import {MapToolCategory} from './map-tool-category.enum';
+import {MapToolCategory} from '../enums/map-tool-category.enum';
 
 export interface Project {
   projectId: number;

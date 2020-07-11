@@ -1,4 +1,4 @@
-import { Map } from '../map';
+import { Map } from '../models/map';
 
 // test data
 export const MAPS: Map[] = [{
