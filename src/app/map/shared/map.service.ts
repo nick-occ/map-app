@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {from, Observable, of, Subject, Subscription} from 'rxjs';
 
-import {Map} from './map';
-import {Project} from './project';
+import {Map} from './models/map';
+import {Project} from './models/project';
 
 import {MAPS} from './mocks/mock-map';
 import {MAP_PANEL_VISIBLE, MAP_TOGGLE, MAP_TOOL} from './mocks/mock-map-tool';
@@ -12,11 +12,12 @@ import {MapToggle, MapTool} from './models/map-tool';
 import {HttpClient} from '@angular/common/http';
 import {MapViewInfo} from './models/map-view-info';
 import {MapView} from './models/map-view';
-import {MapLayer} from './map-layer';
+import {MapLayer} from './models/map-layer';
 import {MapSearchResults} from './models/map-search-results';
 import {loadModules} from 'esri-loader';
 import {MapSearchResult} from './models/map-search-result';
 import {MatButtonToggle} from '@angular/material/button-toggle';
+import {MapToolCategory} from './enums/map-tool-category.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +26,11 @@ export class MapService {
   idRecord = 0;
   searchShow = false;
   mapView: any;
+  maps: Map[];
+  project: Project;
   toggleButtons = MAP_TOGGLE;
   panelVisible = MAP_PANEL_VISIBLE;
-  mapTools = MAP_TOOL;
+  mapTools: MapTool[];
   mapViewInfo: MapViewInfo[] = [];
   mapLegendItems: {
     mapUrl: string,
@@ -45,21 +48,29 @@ export class MapService {
 
   constructor(private http: HttpClient) { }
 
-  getMaps(ids: number[]): Observable<Map[]> {
-    return of(MAPS.filter( map => ids.includes(map.mapId)));
+  getMaps(): Observable<Map[]> {
+    return of(MAPS.filter( m => this.project.maps.includes(m.mapId)));
   }
 
-  getMapByUrl(url: string): string {
-    return MAPS.filter(map => map.url === url)[0].name;
+  getEditMaps(): Observable<Map[]> {
+    return of(MAPS.filter( m => this.project.editMaps.includes(m.mapId)));
+  }
+
+  getMapByUrl(url: string): Map {
+    return this.maps.filter(m => m.url === url).reduce((acc: any, it: Map) => it, { });
   }
 
   getProject(id: number): Observable<Project> {
-    return of(PROJECT.filter((project) => project.projectId === id)[0]);
+    return of(PROJECT.filter((project) => project.projectId === id).reduce((acc: any, it: Project) => it, { }));
+  }
+
+  getMapTools(): Observable<MapTool[]> {
+    return of(MAP_TOOL.filter(tool => this.project.mapTools.includes(tool.category)));
   }
 
   getIdResults(idMapParams: any, idMapTask: any): Observable<any> {
     return from(idMapTask.map(task => {
-      return this.getIdResult(task.execute(idMapParams), this.getMapByUrl(task.url));
+      return this.getIdResult(task.execute(idMapParams), this.getMapByUrl(task.url).name);
     }));
   }
 

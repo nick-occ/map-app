@@ -9,9 +9,9 @@ import {
 } from '@angular/core';
 import { loadModules, loadCss } from 'esri-loader';
 
-import { Map } from './shared/map';
+import { Map } from './shared/models/map';
 import { MapService } from './shared/map.service';
-import {Project} from './shared/project';
+import {Project} from './shared/models/project';
 import {Observable} from 'rxjs';
 import {MatButtonToggle} from '@angular/material/button-toggle';
 import {MapViewInfo} from './shared/models/map-view-info';
@@ -27,8 +27,6 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
   esriMap: any;
   idMapTask: any;
   idMapParams: any;
-  map: Map[];
-  project: Project;
   projectName = '';
   idResults = [];
   currentMapName: string;
@@ -50,9 +48,13 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
       // get map configuration
       await this.getMaps();
 
+      this.mapService.getMapTools().subscribe(tools => {
+        this.mapService.mapTools = tools;
+      });
+
       // set map properties
-      const {center, zoom} = this.project;
-      let {basemap} = this.project;
+      const {center, zoom} = this.mapService.project;
+      let {basemap} = this.mapService.project;
 
       // TODO: create better way to detect if custom basemap
       if (typeof(basemap) === 'object') {
@@ -101,23 +103,23 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
   getProject(id: number): void {
     this.mapService.getProject(id)
       .subscribe(project => {
-        this.project = project;
-        this.projectName = this.project.name;
+        this.mapService.project = project;
+        this.projectName = project.name;
       });
   }
 
   // subscribe to service to get map properties
   getMaps(): void {
-    this.mapService.getMaps(this.project.maps)
-      .subscribe(map => this.map = map);
+    this.mapService.getMaps()
+      .subscribe(maps => this.mapService.maps = maps);
   }
 
   // load layer into map
   async loadLayers() {
 
-    const [MapImageLayer, TileLayer] = await loadModules(['esri/layers/MapImageLayer', 'esri/layers/TileLayer']);
+    const [MapImageLayer, TileLayer, FeatureLayer] = await loadModules(['esri/layers/MapImageLayer', 'esri/layers/TileLayer', 'esri/layers/FeatureLayer']);
 
-    this.map.forEach((m) => {
+    this.mapService.maps.forEach((m) => {
       let layer = null;
       if (m.mapType === 'tileLayer') {
         layer = new TileLayer({
@@ -150,7 +152,7 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
   async identify() {
     const [IdentifyTask, IdentifyParameters] = await loadModules(['esri/tasks/IdentifyTask', 'esri/tasks/support/IdentifyParameters']);
 
-    this.idMapTask = this.map.map(m => new IdentifyTask(m.url));
+    this.idMapTask = this.mapService.maps.map(m => new IdentifyTask(m.url));
 
     this.idMapParams = new IdentifyParameters();
     this.idMapParams.tolerance = 3;
