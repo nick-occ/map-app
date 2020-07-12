@@ -5,7 +5,7 @@ import {MapToolInputType} from '../enums/map-tool-input-type.enum';
 export const MAP_TOOL: MapTool[] = [
   {
     id: 1,
-    category: MapToolCategory.public,
+    category: MapToolCategory.base,
     name: 'Identify',
     inputType: MapToolInputType.toggleButton,
     checked: true,
@@ -19,13 +19,13 @@ export const MAP_TOOL: MapTool[] = [
     togglePanel: true
   }, {
     id: 3,
-    category: MapToolCategory.public,
+    category: MapToolCategory.base,
     name: 'Legend',
     inputType: MapToolInputType.toggleButton,
     checked: false
   }, {
     id: 4,
-    category: MapToolCategory.public,
+    category: MapToolCategory.base,
     name: 'Search',
     inputType: MapToolInputType.textBox
   }];
