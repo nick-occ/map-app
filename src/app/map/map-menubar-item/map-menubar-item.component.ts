@@ -4,7 +4,7 @@ import {
   OnInit,
   ViewChild
 } from '@angular/core';
-import {MapToolCategory} from '../shared/map-tool-category.enum';
+import {MapToolCategory} from '../shared/enums/map-tool-category.enum';
 import {MapTool} from '../shared/models/map-tool';
 import {MatButtonToggle} from '@angular/material/button-toggle';
 import {MapService} from '../shared/map.service';
@@ -20,25 +20,15 @@ export class MapMenubarItemComponent implements OnInit {
 
   constructor(private mapService: MapService) {}
 
-  setToggleButton(): void {
-    this.mapService.toggleButtons[this.tool.name] = this.buttonToggle.checked;
-  }
-
   getToggleState(name: string): boolean {
     return this.mapService.getToggleState(name);
-  }
-
-  closeIdentify(): void {
-    if (this.tool.name === 'Identify' && !this.buttonToggle.checked) {
-      this.mapService.showIdentify();
-    }
   }
 
   ngOnInit(): void { }
 
   buttonClick() {
-    this.setToggleButton();
-    this.closeIdentify();
+    this.mapService.toggleButton(this.tool, this.buttonToggle.checked);
+    if (!this.buttonToggle.checked) { this.mapService.mapView.graphics.removeAll(); }
   }
 
   onKey(val): void {

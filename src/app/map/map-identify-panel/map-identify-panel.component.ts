@@ -61,5 +61,4 @@ export class MapIdentifyPanelComponent implements OnInit, OnChanges {
     this.closed.emit(false);
   }
 
-
 }

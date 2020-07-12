@@ -1,5 +1,5 @@
-import { Project } from '../project';
-
+import {Project} from '../models/project';
+import {MapToolCategory} from '../enums/map-tool-category.enum';
 
 // test data
 export const PROJECT: Project[] = [{
@@ -12,7 +12,9 @@ export const PROJECT: Project[] = [{
     },
     center: [-80.7366, 35.3081],
     zoom: 17,
-    maps: [4]
+    maps: [4],
+    editMaps: [5, 6],
+    mapTools: [MapToolCategory.base, MapToolCategory.edit]
   },
   {
     projectId: 2,
@@ -20,7 +22,8 @@ export const PROJECT: Project[] = [{
     basemap: 'osm',
     center: [-80.7366, 35.3081],
     zoom: 17,
-    maps: [3]
+    maps: [3],
+    mapTools: [MapToolCategory.base]
   },
   {
     projectId: 3,
@@ -28,5 +31,6 @@ export const PROJECT: Project[] = [{
     basemap: 'osm',
     center: [-80.7366, 35.3081],
     zoom: 17,
-    maps: [2]
+    maps: [2],
+    mapTools: [MapToolCategory.base]
   }];

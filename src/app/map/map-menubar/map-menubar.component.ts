@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {MapService} from "../shared/map.service";
+import {Component, Input, OnInit} from '@angular/core';
+import {MapService} from '../shared/map.service';
+import {MapTool} from '../shared/models/map-tool';
 
 @Component({
   selector: 'app-map-menubar',
@@ -8,11 +9,12 @@ import {MapService} from "../shared/map.service";
 })
 export class MapMenubarComponent implements OnInit {
   @Input() projectName = '';
-  mapTools = this.mapService.mapTools;
 
   constructor(private mapService: MapService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
+  getMapTools(): MapTool[] {
+    return this.mapService.mapTools;
+  }
 }

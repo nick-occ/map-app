@@ -1,5 +1,5 @@
-import {MapToolCategory} from '../map-tool-category.enum';
-import {MapToolInputType} from '../map-tool-input-type.enum';
+import {MapToolCategory} from '../enums/map-tool-category.enum';
+import {MapToolInputType} from '../enums/map-tool-input-type.enum';
 
 export interface MapTool {
   id: number;
@@ -7,10 +7,18 @@ export interface MapTool {
   name: string;
   inputType: MapToolInputType;
   checked?: boolean;
+  togglePanel?: boolean;
+  uncheck?: number[];
 }
 
 export interface MapToggle {
   Identify: boolean;
   Edit: boolean;
   Legend: boolean;
+}
+
+export interface MapPanelVisible {
+  Identify: boolean;
+  Search: boolean;
+  Edit: boolean;
 }

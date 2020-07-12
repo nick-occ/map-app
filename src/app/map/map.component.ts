@@ -9,9 +9,9 @@ import {
 } from '@angular/core';
 import { loadModules, loadCss } from 'esri-loader';
 
-import { Map } from './shared/map';
+import { Map } from './shared/models/map';
 import { MapService } from './shared/map.service';
-import {Project} from './shared/project';
+import {Project} from './shared/models/project';
 import {Observable} from 'rxjs';
 import {MatButtonToggle} from '@angular/material/button-toggle';
 import {MapViewInfo} from './shared/models/map-view-info';
@@ -24,11 +24,8 @@ import {MapViewInfo} from './shared/models/map-view-info';
 export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentInit {
   @ViewChild('mapViewNode', { static: true }) private mapViewEl: ElementRef;
   view: any;
-  esriMap: any;
   idMapTask: any;
   idMapParams: any;
-  map: Map[];
-  project: Project;
   projectName = '';
   idResults = [];
   currentMapName: string;
@@ -50,9 +47,13 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
       // get map configuration
       await this.getMaps();
 
+      this.mapService.getMapTools().subscribe(tools => {
+        this.mapService.mapTools = tools;
+      });
+
       // set map properties
-      const {center, zoom} = this.project;
-      let {basemap} = this.project;
+      const {center, zoom} = this.mapService.project;
+      let {basemap} = this.mapService.project;
 
       // TODO: create better way to detect if custom basemap
       if (typeof(basemap) === 'object') {
@@ -73,14 +74,14 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
       };
 
       // create ESRI map object
-      this.esriMap = new EsriMap(mapProp);
+      this.mapService.esriMap = new EsriMap(mapProp);
 
       // set map view properties
       const mapViewProp = {
         container: this.mapViewEl.nativeElement,
         center,
         zoom,
-        map: this.esriMap
+        map: this.mapService.esriMap
       };
 
       this.mapService.mapView = new MapView(mapViewProp);
@@ -101,23 +102,23 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
   getProject(id: number): void {
     this.mapService.getProject(id)
       .subscribe(project => {
-        this.project = project;
-        this.projectName = this.project.name;
+        this.mapService.project = project;
+        this.projectName = project.name;
       });
   }
 
   // subscribe to service to get map properties
   getMaps(): void {
-    this.mapService.getMaps(this.project.maps)
-      .subscribe(map => this.map = map);
+    this.mapService.getMaps()
+      .subscribe(maps => this.mapService.maps = maps);
   }
 
   // load layer into map
   async loadLayers() {
 
-    const [MapImageLayer, TileLayer] = await loadModules(['esri/layers/MapImageLayer', 'esri/layers/TileLayer']);
+    const [MapImageLayer, TileLayer, FeatureLayer] = await loadModules(['esri/layers/MapImageLayer', 'esri/layers/TileLayer', 'esri/layers/FeatureLayer']);
 
-    this.map.forEach((m) => {
+    this.mapService.maps.forEach((m) => {
       let layer = null;
       if (m.mapType === 'tileLayer') {
         layer = new TileLayer({
@@ -140,7 +141,8 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
           });
         });
 
-      this.esriMap.add(layer);
+      this.mapService.esriMap.add(layer);
+
       this.mapService.mapView.whenLayerView(layer).then(() => {
         this.mapService.setMapViewInfo(layer, m);
       });
@@ -150,7 +152,7 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
   async identify() {
     const [IdentifyTask, IdentifyParameters] = await loadModules(['esri/tasks/IdentifyTask', 'esri/tasks/support/IdentifyParameters']);
 
-    this.idMapTask = this.map.map(m => new IdentifyTask(m.url));
+    this.idMapTask = this.mapService.maps.map(m => new IdentifyTask(m.url));
 
     this.idMapParams = new IdentifyParameters();
     this.idMapParams.tolerance = 3;
@@ -178,7 +180,7 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
         });
         if (this.idResults.length > 0 ) {
           // this.idVisible = 'visible';
-          this.mapService.idShow = true;
+          this.mapService.panelVisible.Identify = true;
           this.currentMapName = this.idResults[this.mapService.idRecord].mapName;
           this.currentResult = this.idResults[this.mapService.idRecord].result;
         } else {
@@ -212,11 +214,16 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
   }
 
   onClosed(show) {
-    this.mapService.showIdentify(show);
+    this.mapService.panelVisible.Identify = show;
+    this.mapService.mapView.graphics.removeAll();
   }
 
- getIdShow() {
-    return this.mapService.idShow;
+ getIdPanelVisible() {
+    return this.mapService.panelVisible.Identify;
+ }
+
+ getPanelVisible(panel: string) {
+    return this.mapService.panelVisible[panel];
  }
 
  getToggleState() {

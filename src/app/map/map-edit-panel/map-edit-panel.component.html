@@ -1,0 +1,14 @@
+<mat-card cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+  <mat-card-title>
+    <h3>Edit</h3>
+  </mat-card-title>
+   <mat-form-field appearance="fill">
+    <mat-label>Selected Edit Map</mat-label>
+    <mat-select [(value)]="selectedValue" (selectionChange)="selectionChanged(selectedValue)">
+      <mat-option *ngFor="let map of editMaps" [value]="map.mapId">
+        {{map.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div id="editorDiv"></div>
+</mat-card>

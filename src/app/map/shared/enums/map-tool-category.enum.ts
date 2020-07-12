@@ -1,4 +1,5 @@
 export enum MapToolCategory {
   public,
-  edit
+  edit,
+  base
 }

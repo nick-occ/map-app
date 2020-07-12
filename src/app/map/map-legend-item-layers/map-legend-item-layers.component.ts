@@ -1,6 +1,6 @@
 import {AfterContentInit, AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MapService} from '../shared/map.service';
-import {MapLayer} from '../shared/map-layer';
+import {MapLayer} from '../shared/models/map-layer';
 import {MapLegend} from '../shared/models/map-legend';
 import {MapViewInfo} from '../shared/models/map-view-info';
 
