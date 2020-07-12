@@ -8,6 +8,7 @@ export interface MapTool {
   inputType: MapToolInputType;
   checked?: boolean;
   togglePanel?: boolean;
+  uncheck?: number[];
 }
 
 export interface MapToggle {

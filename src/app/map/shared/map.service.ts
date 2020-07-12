@@ -224,7 +224,6 @@ export class MapService {
           style: 'short-dot'
         };
         geometry = new Polyline(feature.geometry);
-        console.log(geometry);
       } else if (['point', 'esriGeometryPoint'].includes(geometryType)) {
         symbol = {
           type: 'simple-marker',
@@ -256,6 +255,13 @@ export class MapService {
   toggleButton(button: MapTool, state: boolean) {
     this.toggleButtons[button.name] = state;
     if (button.togglePanel || !state) { this.panelVisible[button.name] = state; }
+
+    // uncheck buttons as needed
+    if (button.uncheck && state) {
+      this.mapTools.filter(tool => button.uncheck.includes(tool.id)).forEach(tool => {
+        this.toggleButtons[tool.name] = false;
+      });
+    }
   }
 }
 

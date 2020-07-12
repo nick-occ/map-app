@@ -16,7 +16,8 @@ export const MAP_TOOL: MapTool[] = [
     name: 'Edit',
     inputType: MapToolInputType.toggleButton,
     checked: false,
-    togglePanel: true
+    togglePanel: true,
+    uncheck: [1]
   }, {
     id: 3,
     category: MapToolCategory.base,
