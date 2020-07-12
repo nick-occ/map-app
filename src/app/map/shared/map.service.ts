@@ -132,6 +132,10 @@ export class MapService {
     return this.http.get(`${url}/legend?f=json`);
   }
 
+  getMapInfo(url): Observable<any> {
+    return this.http.get(`${url}?f=json`);
+  }
+
   getLayerLegendItem(mapUrl: string, layerId: number): any {
     return this.mapLegendItems.filter(item => item.mapUrl === mapUrl && item.layerId === layerId);
   }
