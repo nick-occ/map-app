@@ -35,6 +35,8 @@ import { MapSearchItemsComponent } from './map/map-search-items/map-search-items
 import { MapResultsPanelComponent } from './map/map-results-panel/map-results-panel.component';
 import { MapResultsComponent } from './map/map-results/map-results.component';
 import {MatIconModule} from "@angular/material/icon";
+import { MapEditPanelComponent } from './map/map-edit-panel/map-edit-panel.component';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -50,27 +52,29 @@ import {MatIconModule} from "@angular/material/icon";
     MapSearchComponent,
     MapSearchItemsComponent,
     MapResultsPanelComponent,
-    MapResultsComponent
+    MapResultsComponent,
+    MapEditPanelComponent
   ],
     imports: [
-      BrowserModule,
-      NgbModule,
-      BrowserAnimationsModule,
-      FormsModule,
-      MatInputModule,
-      DragDropModule,
-      MatCardModule,
-      MatExpansionModule,
-      MatTableModule,
-      MatSortModule,
-      MatSidenavModule,
-      MatButtonModule,
-      MatIconModule,
-      MatMenuModule,
-      MatToolbarModule,
-      MatButtonToggleModule,
-      HttpClientModule,
-      OrderModule
+        BrowserModule,
+        NgbModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        MatInputModule,
+        DragDropModule,
+        MatCardModule,
+        MatExpansionModule,
+        MatTableModule,
+        MatSortModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatIconModule,
+        MatMenuModule,
+        MatToolbarModule,
+        MatButtonToggleModule,
+        HttpClientModule,
+        OrderModule,
+        MatSelectModule
     ],
   entryComponents: [],
   providers: [],
