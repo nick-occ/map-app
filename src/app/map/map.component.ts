@@ -24,7 +24,6 @@ import {MapViewInfo} from './shared/models/map-view-info';
 export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentInit {
   @ViewChild('mapViewNode', { static: true }) private mapViewEl: ElementRef;
   view: any;
-  esriMap: any;
   idMapTask: any;
   idMapParams: any;
   projectName = '';
@@ -75,14 +74,14 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
       };
 
       // create ESRI map object
-      this.esriMap = new EsriMap(mapProp);
+      this.mapService.esriMap = new EsriMap(mapProp);
 
       // set map view properties
       const mapViewProp = {
         container: this.mapViewEl.nativeElement,
         center,
         zoom,
-        map: this.esriMap
+        map: this.mapService.esriMap
       };
 
       this.mapService.mapView = new MapView(mapViewProp);
@@ -142,7 +141,8 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
           });
         });
 
-      this.esriMap.add(layer);
+      this.mapService.esriMap.add(layer);
+
       this.mapService.mapView.whenLayerView(layer).then(() => {
         this.mapService.setMapViewInfo(layer, m);
       });
