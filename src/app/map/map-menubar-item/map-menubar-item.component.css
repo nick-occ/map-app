@@ -1,0 +1,15 @@
+#textboxContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#textbox {
+  margin: 0;
+  padding: 0;
+}
+
+#clearIcon {
+  margin-left: -30px;
+  cursor: pointer;
+}
