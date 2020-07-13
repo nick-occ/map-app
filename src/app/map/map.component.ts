@@ -15,6 +15,7 @@ import {Project} from './shared/models/project';
 import {Observable} from 'rxjs';
 import {MatButtonToggle} from '@angular/material/button-toggle';
 import {MapViewInfo} from './shared/models/map-view-info';
+import {projectConfig} from '../../../projectConfig.js';
 
 @Component({
   selector: 'app-map',
@@ -42,7 +43,7 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
       const [EsriMap, MapView, Basemap, TileLayer] = await loadModules(['esri/Map', 'esri/views/MapView', 'esri/Basemap', 'esri/layers/TileLayer'], options);
 
       // TODO: set as parameter
-      await this.getProject(1);
+      await this.getProject(projectConfig.projectId);
 
       // get map configuration
       await this.getMaps();
