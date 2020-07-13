@@ -10,6 +10,7 @@ export interface MapTool {
   hasPanel?: boolean;
   togglePanel?: boolean;
   uncheck?: number[];
+  matIcon?: string;
 }
 
 export interface MapToggle {

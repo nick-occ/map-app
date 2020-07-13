@@ -8,12 +8,15 @@
     #buttonToggle
     [checked]="getToggleState(tool.name)"
     (click)=this.buttonClick()
-  > {{tool.name}}
+  >
+    <mat-icon *ngIf="tool.matIcon">{{tool.matIcon}}</mat-icon>
+    {{tool.name}}
   </mat-button-toggle>
 </ng-template>
 
 <ng-template #textboxTemplate>
-  <label>
-    <input #textbox type="text" placeholder="{{tool.name}}" (keyup.enter)="onKey(textbox.value)"/>
-  </label>
+  <div id="textboxContainer">
+    <input id="textbox" #textbox type="text" placeholder="{{tool.name}}" (keyup.enter)="onKey(textbox.value)"/>
+    <mat-icon (click)="clearClick()" id="clearIcon">{{tool.matIcon}}</mat-icon>
+  </div>
 </ng-template>

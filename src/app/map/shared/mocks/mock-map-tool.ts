@@ -10,7 +10,8 @@ export const MAP_TOOL: MapTool[] = [
     inputType: MapToolInputType.toggleButton,
     checked: true,
     hasPanel: true,
-    togglePanel: false
+    togglePanel: false,
+    matIcon: 'info'
   }, {
     id: 2,
     category: MapToolCategory.edit,
@@ -19,18 +20,21 @@ export const MAP_TOOL: MapTool[] = [
     checked: false,
     hasPanel: true,
     togglePanel: true,
-    uncheck: [1]
+    uncheck: [1],
+    matIcon: 'edit'
   }, {
     id: 3,
     category: MapToolCategory.base,
     name: 'Legend',
     inputType: MapToolInputType.toggleButton,
-    checked: false
+    checked: false,
+    matIcon: 'format_list_bulleted'
   }, {
     id: 4,
     category: MapToolCategory.base,
     name: 'Search',
-    inputType: MapToolInputType.textBox
+    inputType: MapToolInputType.textBox,
+    matIcon: 'close'
   }];
 
 export const MAP_TOGGLE: MapToggle = {
