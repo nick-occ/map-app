@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {MapSearchResult} from "../shared/models/map-search-result";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
@@ -9,7 +9,7 @@ import {MapService} from "../shared/map.service";
   templateUrl: './map-results.component.html',
   styleUrls: ['./map-results.component.css']
 })
-export class MapResultsComponent implements OnInit, OnChanges {
+export class MapResultsComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() result: MapSearchResult;
   displayColumns: string[] = ['field', 'value'];
@@ -26,4 +26,7 @@ export class MapResultsComponent implements OnInit, OnChanges {
   ngOnInit(): void {
   }
 
+  ngOnDestroy() {
+    this.mapService.removeGraphics();
+  }
 }

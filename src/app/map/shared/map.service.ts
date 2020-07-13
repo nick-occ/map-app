@@ -186,6 +186,10 @@ export class MapService {
     return this.toggleButtons[name];
   }
 
+  removeGraphics() {
+    this.mapView.graphics.removeAll();
+  }
+
   // @ts-ignore
   async highlightFeature(feature, geometryType, zoom= false): void {
 
@@ -199,8 +203,6 @@ export class MapService {
         'esri/geometry/SpatialReference',
         'esri/geometry/Extent',
         'esri/geometry/support/webMercatorUtils']);
-
-    this.mapView.graphics.removeAll();
 
     let symbol = null;
     let geometry = null;

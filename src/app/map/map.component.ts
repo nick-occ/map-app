@@ -216,7 +216,6 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
 
   onClosed(show) {
     this.mapService.panelVisible.Identify = show;
-    this.mapService.mapView.graphics.removeAll();
   }
 
  getIdPanelVisible() {

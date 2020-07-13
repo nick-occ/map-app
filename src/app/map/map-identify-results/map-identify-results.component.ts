@@ -22,7 +22,7 @@ export interface IdData {
   templateUrl: './map-identify-results.component.html',
   styleUrls: ['./map-identify-results.component.css']
 })
-export class MapIdentifyResultsComponent implements OnInit, OnChanges {
+export class MapIdentifyResultsComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() currentMapName = '';
   @Input() currentResult = {
@@ -42,6 +42,7 @@ export class MapIdentifyResultsComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log('changes', changes);
+    this.mapService.removeGraphics();
     if (this.currentResult) {
       this.layerName = this.currentResult.layerName;
       this.attributes = this.currentResult.feature.attributes;
@@ -60,8 +61,6 @@ export class MapIdentifyResultsComponent implements OnInit, OnChanges {
         'esri/symbols/SimpleMarkerSymbol',
         'esri/symbols/SimpleLineSymbol',
         'esri/symbols/SimpleFillSymbol']);
-
-    this.mapService.mapView.graphics.removeAll();
 
     let symbol;
     switch (result.feature.geometry.type) {
@@ -114,5 +113,9 @@ export class MapIdentifyResultsComponent implements OnInit, OnChanges {
 
 
   ngOnInit() {  }
+
+  ngOnDestroy() {
+    this.mapService.removeGraphics();
+  }
 
 }

@@ -28,7 +28,6 @@ export class MapMenubarItemComponent implements OnInit {
 
   buttonClick() {
     this.mapService.toggleButton(this.tool, this.buttonToggle.checked);
-    if (!this.buttonToggle.checked) { this.mapService.mapView.graphics.removeAll(); }
   }
 
   onKey(val): void {

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MapSearchResult} from '../shared/models/map-search-result';
 import {MapService} from '../shared/map.service';
 
@@ -25,6 +25,5 @@ export class MapResultsPanelComponent implements OnInit {
 
   closeSearch(): void {
     this.mapService.searchShow = false;
-    this.mapService.mapView.graphics.removeAll();
   }
 }
