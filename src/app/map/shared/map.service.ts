@@ -262,6 +262,9 @@ export class MapService {
     if (button.uncheck && state) {
       this.mapTools.filter(tool => button.uncheck.includes(tool.id)).forEach(tool => {
         this.toggleButtons[tool.name] = false;
+        if (button.hasPanel) {
+          this.panelVisible[tool.name] = false;
+        }
       });
     }
   }

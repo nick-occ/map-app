@@ -9,6 +9,7 @@ export const MAP_TOOL: MapTool[] = [
     name: 'Identify',
     inputType: MapToolInputType.toggleButton,
     checked: true,
+    hasPanel: true,
     togglePanel: false
   }, {
     id: 2,
@@ -16,6 +17,7 @@ export const MAP_TOOL: MapTool[] = [
     name: 'Edit',
     inputType: MapToolInputType.toggleButton,
     checked: false,
+    hasPanel: true,
     togglePanel: true,
     uncheck: [1]
   }, {
