@@ -25,6 +25,6 @@ export class MapSearchItemsComponent implements OnInit {
   layerClick(feature): void {
     this.mapService.highlightFeature(feature, feature.geometryType, true);
     this.mapService.searchResult = this.result;
-    this.mapService.searchShow = true;
+    this.mapService.panelVisible.Search = true;
   }
 }

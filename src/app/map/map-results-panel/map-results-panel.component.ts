@@ -19,11 +19,11 @@ export class MapResultsPanelComponent implements OnInit {
     return this.mapService.searchResult;
   }
 
-  showSearch(): boolean {
-    return this.mapService.searchShow;
+  openSearch(): boolean {
+    return this.mapService.panelVisible.Search;
   }
 
   closeSearch(): void {
-    this.mapService.searchShow = false;
+    this.mapService.panelVisible.Search = false;
   }
 }

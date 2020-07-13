@@ -24,7 +24,6 @@ import {MapToolCategory} from './enums/map-tool-category.enum';
 })
 export class MapService {
   idRecord = 0;
-  searchShow = false;
   esriMap: any;
   mapView: any;
   maps: Map[];
