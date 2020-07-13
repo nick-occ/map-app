@@ -42,7 +42,6 @@ export class MapComponent implements OnInit, OnDestroy, OnChanges, AfterContentI
       // load modules
       const [EsriMap, MapView, Basemap, TileLayer] = await loadModules(['esri/Map', 'esri/views/MapView', 'esri/Basemap', 'esri/layers/TileLayer'], options);
 
-      // TODO: set as parameter
       await this.getProject(projectConfig.projectId);
 
       // get map configuration
