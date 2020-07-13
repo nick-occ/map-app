@@ -27,7 +27,6 @@ export class MapEditPanelComponent implements OnInit, AfterViewInit, OnDestroy {
       ]);
     this.mapService.getEditMaps().subscribe(em => this.editMaps = em);
     this.selectedValue = this.editMaps[0].mapId;
-    console.log(this.selectedValue);
     this.addFeatureLayer();
 
 
@@ -40,7 +39,6 @@ export class MapEditPanelComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   async selectionChanged(val) {
-    console.log(val);
     this.addFeatureLayer();
   }
 
@@ -64,7 +62,6 @@ export class MapEditPanelComponent implements OnInit, AfterViewInit, OnDestroy {
           });
         });
         this.mapService.esriMap.addMany(this.featureLayerList);
-        console.log(this.mapService.esriMap);
       });
     });
   }
@@ -77,4 +74,8 @@ export class MapEditPanelComponent implements OnInit, AfterViewInit, OnDestroy {
     this.removeFeatureLayers();
   }
 
+  hidePanel() {
+    this.mapService.panelVisible.Edit = false;
+    this.mapService.toggleButtons.Edit = false;
+  }
 }
