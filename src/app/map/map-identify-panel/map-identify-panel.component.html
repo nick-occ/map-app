@@ -1,9 +1,12 @@
 <mat-card cdkDrag cdkDragRootElement=".cdk-overlay-pane">
-  <button (click)="hideIdPanel()"
-          mat-icon-button color="primary"
-          aria-label="close button">
-    <mat-icon>close</mat-icon>
-  </button>
+  <div class="panelButton">
+    <button (click)="hideIdPanel()"
+            mat-icon-button color="primary"
+            aria-label="close button">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
   <mat-card-title>
     <button
       (click)="recClick('prev')"

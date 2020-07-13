@@ -11,3 +11,8 @@ mat-card-title {
 :host {
   position: absolute;
 }
+
+.panelButton {
+  display: flex;
+  flex-direction: row-reverse;
+}
